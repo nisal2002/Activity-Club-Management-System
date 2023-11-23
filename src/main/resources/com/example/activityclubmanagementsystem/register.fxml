@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood.registerController">
+    <children>
+        <Pane prefHeight="500.0" prefWidth="200.0" styleClass="backgroundColor2" stylesheets="@style.css">
+         <children>
+            <Text layoutX="32.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register">
+               <font>
+                  <Font name="System Bold" size="35.0" />
+               </font>
+            </Text>
+            <Button fx:id="backBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBackClick" prefHeight="30.0" prefWidth="89.0" text="BACK" />
+            <Button fx:id="student" layoutX="43.0" layoutY="160.0" mnemonicParsing="false" onAction="#selectClick" prefHeight="53.0" prefWidth="115.0" text="Student" />
+            <Button fx:id="admin" layoutX="42.0" layoutY="339.0" mnemonicParsing="false" onAction="#selectClick" prefHeight="53.0" prefWidth="115.0" text="Admin" />
+            <Button fx:id="teacher" layoutX="42.0" layoutY="250.0" mnemonicParsing="false" onAction="#selectClick" prefHeight="53.0" prefWidth="115.0" text="Teacher" />
+         </children></Pane>
+        <StackPane fx:id="stack" layoutX="199.0" prefHeight="500.0" prefWidth="600.0">
+            <children>
+            <Pane fx:id="adpane" prefHeight="200.0" prefWidth="200.0" styleClass="backgroundColor" stylesheets="@style.css">
+               <children>
+                   <Text layoutX="251.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
+                       <font>
+                           <Font name="System Bold" size="25.0" />
+                       </font>
+                   </Text>
+                   <Text layoutX="100.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Id">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                   <Text layoutX="92.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                   <Text layoutX="101.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                   <Text layoutX="121.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NIC">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                   <Text layoutX="117.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DOB">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                   <Text layoutX="107.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                   <Text layoutX="115.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                   <TextField fx:id="adminTxtId" layoutX="222.0" layoutY="45.0" prefHeight="25.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                   <TextField fx:id="adminTxtFirstN" layoutX="222.0" layoutY="87.0" prefHeight="25.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                   <TextField fx:id="adminTxtLastN" layoutX="222.0" layoutY="130.0" prefHeight="25.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                   <TextField fx:id="adminTxtNic" layoutX="222.0" layoutY="173.0" prefHeight="25.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                   <TextField fx:id="adminTxtEmail" layoutX="222.0" layoutY="299.0" prefHeight="25.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                   <DatePicker fx:id="adminDateDob" layoutX="222.0" layoutY="215.0" prefHeight="30.0" prefWidth="175.0" />
+                   <Button fx:id="adminBtnRegister" layoutX="470.0" layoutY="214.0" mnemonicParsing="false" onAction="#onAdminRegisterClick" prefHeight="32.0" prefWidth="74.0" text="Register">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                   <Button fx:id="adminBtnClear" layoutX="470.0" layoutY="256.0" mnemonicParsing="false" onAction="#onAdminClearClick" prefHeight="32.0" prefWidth="74.0" text="Clear">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Text layoutX="54.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Authentication Code">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <PasswordField fx:id="adminTxtAuth" layoutX="223.0" layoutY="427.0" prefHeight="25.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </PasswordField>
+                  <Button fx:id="adminBtnShow" layoutX="405.0" layoutY="426.0" mnemonicParsing="false" onAction="#onAdminShowClick" text="Show">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <PasswordField fx:id="adminTxtPwd" layoutX="222.0" layoutY="342.0" prefHeight="32.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </PasswordField>
+                  <PasswordField fx:id="adminTxtRePwd" layoutX="223.0" layoutY="385.0" prefHeight="32.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </PasswordField>
+                  <ChoiceBox fx:id="adminChoiceGender" layoutX="222.0" layoutY="257.0" prefHeight="30.0" prefWidth="175.0" />
+                  <Text layoutX="97.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="61.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Re Enter Password">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="Stest" layoutX="475.0" layoutY="42.0" mnemonicParsing="false" onAction="#onAtest" text="Button" />
+               </children>
+            </Pane>
+                <Pane fx:id="teapane" prefHeight="200.0" prefWidth="200.0" styleClass="backgroundColor" stylesheets="@style.css">
+               <children>
+                   <Text layoutX="254.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Teacher">
+                       <font>
+                           <Font name="System Bold" size="25.0" />
+                       </font>
+                   </Text>
+                   <Text layoutX="96.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Teacher Id">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                   <Text layoutX="95.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                   <Text layoutX="103.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                   <Text layoutX="123.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NIC">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                   <Text layoutX="119.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DOB">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                   <Text layoutX="109.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                   <Text layoutX="117.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                   <TextField fx:id="teacherTxtID" layoutX="224.0" layoutY="47.0" prefHeight="25.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                   <TextField fx:id="teacherTxtFirstN" layoutX="224.0" layoutY="95.0" prefHeight="25.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                   <TextField fx:id="teacherTxtLastN" layoutX="224.0" layoutY="141.0" prefHeight="25.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                   <TextField fx:id="teacherTxtNic" layoutX="224.0" layoutY="185.0" prefHeight="25.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                   <TextField fx:id="teacherTxtEmail" layoutX="224.0" layoutY="310.0" prefHeight="25.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                   <DatePicker fx:id="teacherDateDob" layoutX="224.0" layoutY="230.0" prefHeight="25.0" />
+                   <Button fx:id="teacherBtnRegister" layoutX="240.0" layoutY="459.0" mnemonicParsing="false" onAction="#onTeacherRegisterClick" text="Register" />
+                   <Button fx:id="teacherBtnClear" layoutX="318.0" layoutY="459.0" mnemonicParsing="false" onAction="#onTeacherClearClick" prefHeight="25.0" prefWidth="59.0" text="Clear" />
+                  <Text layoutX="41.0" layoutY="445.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Authentication Code">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <PasswordField fx:id="teacherTxtAuth" layoutX="224.0" layoutY="423.0" prefHeight="25.0" prefWidth="175.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </PasswordField>
+                  <Button fx:id="teacherBtnShow" layoutX="433.0" layoutY="425.0" mnemonicParsing="false" onAction="#onShowClick" text="Show" />
+                  <ChoiceBox fx:id="teacherChoiceGender" layoutX="227.0" layoutY="267.0" prefWidth="150.0" />
+                  <Label layoutX="122.0" layoutY="351.0" text="Password" />
+                  <PasswordField fx:id="teacherTxtPwd" layoutX="224.0" layoutY="347.0" />
+                  <Label layoutX="96.0" layoutY="384.0" text="Re enter Password" />
+                  <PasswordField fx:id="teacherTxtRePwd" layoutX="224.0" layoutY="380.0" />
+                  <Button fx:id="Ttest" layoutX="458.0" layoutY="61.0" mnemonicParsing="false" onAction="#onTtest" text="Button" />
+               </children>
+            </Pane>
+                <Pane fx:id="stupane" prefHeight="200.0" prefWidth="200.0" styleClass="backgroundColor" stylesheets="@style.css">
+               <children>
+                  <Text layoutX="254.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="96.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Id">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="92.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="101.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="121.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NIC">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="117.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DOB">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="107.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="115.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="studentTxtId" layoutX="222.0" layoutY="66.0" prefHeight="25.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="studentTxtFirstN" layoutX="223.0" layoutY="109.0" prefHeight="25.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="studentTxtLastN" layoutX="223.0" layoutY="151.0" prefHeight="25.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="studentTxtNic" layoutX="223.0" layoutY="194.0" prefHeight="25.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="studentTxtEmail" layoutX="222.0" layoutY="320.0" prefHeight="25.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <DatePicker fx:id="studentDateDob" layoutX="223.0" layoutY="237.0" prefHeight="32.0" prefWidth="175.0" />
+                  <Button fx:id="studentBtnRegister" layoutX="471.0" layoutY="215.0" mnemonicParsing="false" onAction="#onStudentRegisterClick" prefHeight="30.0" prefWidth="102.0" text="REGISTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="studentBtnClear" layoutX="478.0" layoutY="254.0" mnemonicParsing="false" onAction="#onStudentClearClick" prefHeight="30.0" prefWidth="89.0" text="CLEAR">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <PasswordField fx:id="studentTxtPwd" layoutX="222.0" layoutY="363.0" prefHeight="32.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </PasswordField>
+                  <PasswordField fx:id="studentTxtRePwd" layoutX="223.0" layoutY="406.0" prefHeight="32.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </PasswordField>
+                  <ChoiceBox fx:id="studentChoiceGender" layoutX="222.0" layoutY="279.0" prefHeight="30.0" prefWidth="175.0" />
+                  <Text layoutX="61.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Re Enter Password">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="97.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="Atest" layoutX="425.0" layoutY="42.0" mnemonicParsing="false" onAction="#onStest" text="test" />
+               </children>
+            </Pane>
+            </children>
+        </StackPane>
+    </children>
+</AnchorPane>

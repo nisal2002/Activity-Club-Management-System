@@ -1,0 +1,52 @@
+.backgroundColor{
+    -fx-background-color: linear-gradient(to right bottom,maroon, white);
+}
+.backgroundColor2{
+    -fx-background-color: linear-gradient(to left bottom,maroon, white);
+}
+
+.button{
+    -fx-font-family: "Century Gothic";
+    -fx-background-color: #2c2c2c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10 10 10 10;
+}
+
+.button:hover{
+    -fx-background-color: white;
+    -fx-text-fill:#2c2c2c;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20 20 20 20;
+}
+
+.label{
+    -fx-font-family: "Century Gothic";
+    -fx-font-weight: bold;
+}
+
+.text-field{
+    -fx-font-family: "Century Gothic";
+    -fx-background-color: #fec9c9;
+}
+
+.table-view{
+    -fx-background-color: #cff4d2;
+    -fx-border-color: linear-gradient(to left bottom,#61D8DE, #E839f6);
+}
+
+.table-view .column-header{
+    -fx-background-color: white;
+}
+
+.table-row-cell{
+    -fx-background-color: transparent;
+}
+
+.calendar-grid {
+    -fx-background-color: linear-gradient(to left bottom,#61D8DE, #E839f6);
+}
+
+.combo-box .list-cell{
+    -fx-background-color: #cff4d2;
+}
