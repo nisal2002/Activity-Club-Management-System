@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood.studentController">
+   <children>
+      <Pane prefHeight="600.0" prefWidth="300.0" styleClass="backgroundColor2" stylesheets="@style.css">
+         <children>
+            <Button fx:id="backBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBackClick" prefHeight="30.0" prefWidth="53.0" text="BACK" />
+            <Label layoutX="85.0" layoutY="99.0" text="Student">
+               <font>
+                  <Font name="System Bold" size="35.0" />
+               </font></Label>
+            <Button fx:id="joinClbBtn" layoutX="85.0" layoutY="182.0" mnemonicParsing="false" onAction="#selectClick" prefHeight="59.0" prefWidth="130.0" text="Join Clubs" />
+            <Button fx:id="viewClbBtn" layoutX="85.0" layoutY="264.0" mnemonicParsing="false" onAction="#selectClick" prefHeight="59.0" prefWidth="130.0" text="View Clubs" />
+            <Button fx:id="attendBtn" layoutX="85.0" layoutY="346.0" mnemonicParsing="false" onAction="#selectClick" prefHeight="59.0" prefWidth="130.0" text="Attend Events" />
+            <Button fx:id="profileBtn" layoutX="85.0" layoutY="511.0" mnemonicParsing="false" onAction="#selectClick" prefHeight="59.0" prefWidth="130.0" text="Profile" />
+         </children>
+      </Pane>
+      <StackPane layoutX="300.0" prefHeight="600.0" prefWidth="900.0">
+         <children>
+            <Pane fx:id="joinClbPane" prefHeight="200.0" prefWidth="200.0" styleClass="backgroundColor" stylesheets="@style.css">
+               <children>
+                  <Label layoutX="388.0" layoutY="32.0" text="Join Clubs">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="55.0" layoutY="88.0" text="Enter Club ID or Club Name">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="checkClb" layoutX="310.0" layoutY="81.0" onKeyTyped="#onJoinCheck" prefHeight="38.0" prefWidth="280.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <TableView fx:id="tblClb" layoutX="141.0" layoutY="137.0" prefHeight="375.0" prefWidth="600.0">
+                    <columns>
+                      <TableColumn fx:id="joinClubId" prefWidth="75.0" text="Club ID" />
+                      <TableColumn fx:id="joinClubName" prefWidth="75.0" text="Club Name" />
+                        <TableColumn fx:id="joinTeacherId" prefWidth="133.3333740234375" text="Teacher-In-Charge ID" />
+                        <TableColumn fx:id="joinTeacherName" prefWidth="130.66668701171875" text="Teacher-In-Charge " />
+                        <TableColumn fx:id="joinClubLeader" prefWidth="84.66668701171875" text="Club Leader" />
+                        <TableColumn fx:id="joinDescription" prefWidth="99.3333740234375" text="Description" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="checkClbBtn" layoutX="619.0" layoutY="83.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="89.0" text="CHECK" />
+                  <Label layoutX="125.0" layoutY="521.0" text="Club ID">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="479.0" layoutY="521.0" text="Club Name">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="joinClbID" layoutX="125.0" layoutY="544.0" prefHeight="38.0" prefWidth="280.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="joinClbName" layoutX="479.0" layoutY="544.0" prefHeight="38.0" prefWidth="280.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="joinBtn" layoutX="773.0" layoutY="534.0" mnemonicParsing="false" onAction="#onJoinClick" prefHeight="46.0" prefWidth="113.0" text="JOIN" />
+                  <Button fx:id="resetBtn" layoutX="773.0" layoutY="479.0" mnemonicParsing="false" onAction="#onResetClick" prefHeight="46.0" prefWidth="113.0" text="RESET" />
+               </children>
+            </Pane>
+            <Pane fx:id="viewClbPane" prefHeight="200.0" prefWidth="200.0" styleClass="backgroundColor" stylesheets="@style.css">
+               <children>
+                  <Label layoutX="382.0" layoutY="48.0" text="View Clubs">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font></Label>
+                  <TableView fx:id="tableViewClb" layoutX="150.0" layoutY="118.0" prefHeight="422.0" prefWidth="600.0">
+                     <columns>
+                        <TableColumn prefWidth="75.0" text="Club ID" />
+                        <TableColumn prefWidth="75.0" text="Club Name" />
+                        <TableColumn prefWidth="139.33331298828125" text="Teacher-In-Charge ID" />
+                        <TableColumn prefWidth="124.66668701171875" text="Teacher-In-Charge " />
+                        <TableColumn prefWidth="85.33331298828125" text="Club Leader" />
+                        <TableColumn prefWidth="99.3333740234375" text="Description" />
+                     </columns>
+                  </TableView>
+               </children>
+            </Pane>
+            <Pane fx:id="attendPane" prefHeight="200.0" prefWidth="200.0" styleClass="backgroundColor" stylesheets="@style.css">
+               <children>
+                  <Label layoutX="368.0" layoutY="14.0" text="Attend Events">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <TabPane fx:id="attendTbl" layoutX="92.0" layoutY="65.0" prefHeight="532.0" prefWidth="766.0" style="-fx-background-color: purple;" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Meetings">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="342.0" prefWidth="579.0">
+                                 <children>
+                                    <TableView fx:id="studentTableMeetings" layoutX="1.0" prefHeight="522.0" prefWidth="766.0">
+                                      <columns>
+                                        <TableColumn fx:id="meetingsMonday" prefWidth="128.0" text="Monday">
+                                             <columns>
+                                                <TableColumn fx:id="meetingsMonday1" prefWidth="75.0" text="Column X" />
+                                                <TableColumn fx:id="meetingsMonday2" prefWidth="75.0" text="Column X" />
+                                             </columns>
+                                          </TableColumn>
+                                        <TableColumn fx:id="meetingsTuesday" prefWidth="128.0" text="Tuesday">
+                                             <columns>
+                                                <TableColumn fx:id="meetingsTuesday1" prefWidth="75.0" text="Column X" />
+                                                <TableColumn fx:id="meetingsTuesday2" prefWidth="75.0" text="Column X" />
+                                             </columns>
+                                          </TableColumn>
+                                          <TableColumn fx:id="meetingsWednesday" prefWidth="128.0" text="Wdnesday">
+                                             <columns>
+                                                <TableColumn fx:id="meetingsWednesday1" prefWidth="75.0" text="Column X" />
+                                                <TableColumn fx:id="meetingsWednesday2" prefWidth="75.0" text="Column X" />
+                                             </columns>
+                                          </TableColumn>
+                                          <TableColumn fx:id="meetingsThursday" prefWidth="128.0" text="Thursday">
+                                             <columns>
+                                                <TableColumn fx:id="meetingsThursday1" prefWidth="75.0" text="Column X" />
+                                                <TableColumn fx:id="meetingsThursday2" prefWidth="75.0" text="Column X" />
+                                             </columns>
+                                          </TableColumn>
+                                          <TableColumn fx:id="meetingsFriday" prefWidth="128.0" text="Friday">
+                                             <columns>
+                                                <TableColumn fx:id="meetingsFriday1" prefWidth="75.0" text="Column X" />
+                                                <TableColumn fx:id="meetingsFriday2" prefWidth="75.3333740234375" text="Column X" />
+                                             </columns>
+                                          </TableColumn>
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="Events">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        </content>
+                      </Tab>
+                        <Tab text="Activities">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                          </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </Pane>
+            <Pane fx:id="profilePane" prefHeight="600.0" prefWidth="700.0" styleClass="backgroundColor" stylesheets="@style.css">
+               <children>
+                  <Label layoutX="414.0" layoutY="45.0" text="Profile">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="311.0" layoutY="116.0" text="Student ID">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="100.0" layoutY="200.0" text="First Name">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="522.0" layoutY="200.0" text="Surname">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="100.0" layoutY="291.0" text="NIC">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="524.0" layoutY="291.0" text="DOB">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="99.0" layoutY="380.0" text="Gender">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="524.0" layoutY="380.0" text="Email">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="profileTxtID" layoutX="311.0" layoutY="139.0" prefHeight="38.0" prefWidth="280.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="profileTxtFirstN" layoutX="100.0" layoutY="223.0" prefHeight="38.0" prefWidth="280.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="profileTxtLastN" layoutX="521.0" layoutY="223.0" prefHeight="38.0" prefWidth="280.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="profileTxtNic" layoutX="100.0" layoutY="314.0" prefHeight="38.0" prefWidth="280.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <DatePicker fx:id="profileDateDob" layoutX="524.0" layoutY="314.0" prefHeight="38.0" prefWidth="280.0" />
+                  <TextField fx:id="profileTxtEmail" layoutX="524.0" layoutY="403.0" prefHeight="38.0" prefWidth="280.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="profileBtnSave" layoutX="394.0" layoutY="515.0" mnemonicParsing="false" onAction="#onProfileSaveClick" prefHeight="46.0" prefWidth="113.0" text="SAVE" />
+                  <ChoiceBox fx:id="profileChoiceGender" layoutX="100.0" layoutY="403.0" prefHeight="38.0" prefWidth="280.0" />
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
