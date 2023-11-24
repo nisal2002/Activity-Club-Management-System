@@ -117,5 +117,137 @@ public class registerController {
         teacherTxtPwd.clear();
         teacherTxtRePwd.clear();
     }
+    private getText getTeacher() {
+        String firstName = null;
+        String surName= null;
+        String nic= null;
+        String email= null;
+        String Auth= null;
+        String dob= null;
+        String gender= null;
+        String pwd = null;
+
+        Boolean completed = true;
+        if(teacherTxtFirstN.getText().isEmpty())
+        {
+            completed=false;
+            teacherTxtFirstN.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+        }
+        else
+        {
+            teacherTxtFirstN.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
+            firstName = teacherTxtFirstN.getText();
+        }
+        if(teacherTxtLastN.getText().isEmpty())
+        {
+            completed=false;
+            teacherTxtLastN.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+        }
+        else
+        {
+            teacherTxtLastN.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
+            surName = teacherTxtLastN.getText();
+        }
+        if(teacherTxtNic.getText().isEmpty())
+        {
+            completed=false;
+            teacherTxtNic.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+
+        }
+        else
+        {
+            teacherTxtNic.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
+            nic = teacherTxtNic.getText();
+        }
+        if(teacherDateDob.getValue()==null)
+        {
+            completed=false;
+            teacherDateDob.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+        }
+        else
+        {
+            teacherDateDob.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
+            dob = teacherDateDob.getValue().toString();
+        }
+        if(teacherTxtEmail.getText().isEmpty())
+        {
+            completed=false;
+            teacherTxtEmail.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+        }
+        else
+        {
+            teacherTxtEmail.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
+            email = teacherTxtEmail.getText();
+        }
+        if(teacherChoiceGender.getValue()==null)
+        {
+            completed=false;
+            teacherChoiceGender.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+        }
+        else
+        {
+            teacherChoiceGender.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
+            gender = teacherChoiceGender.getValue().toString();
+        }
+        if(teacherTxtAuth.getText().isEmpty())
+        {
+            completed=false;
+            teacherTxtAuth.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+        }
+        else
+        {
+            teacherTxtAuth.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
+            Auth = teacherTxtAuth.getText();
+        }
+        if(teacherTxtPwd.getText().isEmpty())
+        {
+            completed=false;
+            teacherTxtPwd.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+        }
+        else
+        {
+            teacherTxtPwd.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
+
+        }
+        if(teacherTxtRePwd.getText().isEmpty())
+        {
+            completed=false;
+            teacherTxtRePwd.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+        }
+        else
+        {
+            teacherTxtRePwd.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
+
+        }
+        if(teacherTxtPwd.getText().equals(teacherTxtRePwd.getText()))
+        {
+            pwd = teacherTxtPwd.getText();
+            teacherTxtRePwd.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
+            teacherTxtPwd.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
+
+        }
+        else
+        {
+            completed =false;
+            teacherTxtPwd.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+            teacherTxtRePwd.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+
+        }
+
+        ArrayList<String> inputString = new ArrayList<>();
+        inputString.add(teacherTxtID.getText());
+        inputString.add(firstName);
+        inputString.add(surName);
+        inputString.add(nic);
+        inputString.add(dob);
+        inputString.add(gender);
+        inputString.add(email);
+        inputString.add(pwd);
+        inputString.add(Auth);
+        getText inputs = new getText(completed,inputString);
+        return inputs;
+
+
+    }
 
 }
