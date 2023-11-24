@@ -156,7 +156,6 @@ public class Data {
             byte[] serializedObject = BOut.toByteArray();
             statement.setBytes(1,serializedObject);
             statement.executeUpdate();
-
         }
         catch (IOException e)
         {
