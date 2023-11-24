@@ -224,4 +224,14 @@ public class Data {
     public static ObservableList<Admin> getAdminList() {
         return adminList;
     }
+    public static ObservableList<Teacher> getTeacherList()
+    {
+        return teacherList;
+    }
+    public static void printTeacher() {
+        for (Teacher t:teacherList)
+        {
+            System.out.println(t.toString());
+        }
+    }
 }
