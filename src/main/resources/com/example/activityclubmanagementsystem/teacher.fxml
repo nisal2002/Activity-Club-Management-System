@@ -161,31 +161,6 @@
                   </TabPane>
                </children>
             </Pane>
-            <Pane fx:id="viewClbPane" prefHeight="200.0" prefWidth="200.0" styleClass="backgroundColor" stylesheets="@style.css">
-               <children>
-                  <Label layoutX="382.0" layoutY="48.0" text="View Clubs">
-                     <font>
-                        <Font name="System Bold" size="25.0" />
-                     </font>
-                  </Label>
-                  <TableView fx:id="tableViewStudents" layoutX="53.0" layoutY="318.0" prefHeight="261.0" prefWidth="600.0">
-                     <columns>
-                        <TableColumn fx:id="viewId" prefWidth="75.0" text="id" />
-                        <TableColumn fx:id="viewFirstN" prefWidth="75.0" text="first Name" />
-                        <TableColumn fx:id="fviewLastN" prefWidth="75.0" text="Last Name" />
-                        <TableColumn fx:id="viewClubs" prefWidth="75.0" text="clubs" />
-                        <TableColumn fx:id="viewEmail" prefWidth="75.0" text="email" />
-                     </columns>
-                     <contextMenu>
-                        <ContextMenu>
-                          <items>
-                            <MenuItem fx:id="onRemoveClick" mnemonicParsing="false" onAction="#onRemoveClick" text="remove" />
-                          </items>
-                        </ContextMenu>
-                     </contextMenu>
-                  </TableView>
-               </children>
-            </Pane>
             <Pane fx:id="profilePane" prefHeight="600.0" prefWidth="700.0" styleClass="backgroundColor" stylesheets="@style.css">
                <children>
                   <Label layoutX="414.0" layoutY="45.0" text="Profile">
@@ -256,6 +231,31 @@
                      </font>
                   </TextField>
                   <Button fx:id="profileBtnSave" layoutX="394.0" layoutY="515.0" mnemonicParsing="false" onAction="#onSaveClick" prefHeight="46.0" prefWidth="113.0" text="SAVE" />
+               </children>
+            </Pane>
+            <Pane fx:id="viewClbPane" prefHeight="200.0" prefWidth="200.0" styleClass="backgroundColor" stylesheets="@style.css">
+               <children>
+                  <Label layoutX="382.0" layoutY="48.0" text="View Clubs">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="tableViewStudents" layoutX="53.0" layoutY="318.0" prefHeight="261.0" prefWidth="600.0">
+                     <columns>
+                        <TableColumn fx:id="viewId" prefWidth="75.0" text="id" />
+                        <TableColumn fx:id="viewFirstN" prefWidth="75.0" text="first Name" />
+                        <TableColumn fx:id="fviewLastN" prefWidth="75.0" text="Last Name" />
+                        <TableColumn fx:id="viewClubs" prefWidth="75.0" text="clubs" />
+                        <TableColumn fx:id="viewEmail" prefWidth="75.0" text="email" />
+                     </columns>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem fx:id="onRemoveClick" mnemonicParsing="false" onAction="#onRemoveClick" text="remove" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </TableView>
                </children>
             </Pane>
          </children>

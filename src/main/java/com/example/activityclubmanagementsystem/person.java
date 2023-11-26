@@ -2,9 +2,9 @@ package com.example.activityclubmanagementsystem;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDate;
 
-public class person implements Serializable
-{
+abstract class person implements Serializable {
     private String id;
     private String firstName;
     private String SurName;
@@ -12,11 +12,10 @@ public class person implements Serializable
     private String dob;
     private String gender;
     private String email;
-
     private String password;
     @Serial
     private static final long serialVersionUID = -996908784191997247L;
-// 996908784191997247
+    // 996908784191997247
     public person(String id, String firstName, String surName, String nic, String dob, String gender, String email, String password) {
         this.id = id;
         this.firstName = firstName;
