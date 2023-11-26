@@ -16,15 +16,17 @@ public class event implements Serializable
     private LocalTime endTime;
     private LocalDate date;
     private String description;
+    private String venue;
     private ArrayList<String> attendance = new ArrayList<>();
 
-    public event(club heldByClub, String eventName, LocalTime startTime, LocalTime endTime, LocalDate date, String description) {
+    public event(club heldByClub, String eventName, LocalTime startTime, LocalTime endTime, LocalDate date, String description,String venue) {
         this.heldByClub = heldByClub;
         this.eventName = eventName;
         this.startTime = startTime;
         this.endTime = endTime;
         this.date = date;
         this.description = description;
+        this.venue=venue;
     }
 
     public club getHeldByClub() {
@@ -75,4 +77,32 @@ public class event implements Serializable
         this.description = description;
     }
 
+    public ArrayList<String> getAttendance() {
+        return attendance;
+    }
+
+    public String getVenue() {
+        return venue;
+    }
+    private ArrayList<Student> getStudents()
+    {
+        ArrayList<Student> studentList = new ArrayList<>();
+        for (String studentId:attendance)
+        {
+            for (Student student:Data.getStudentList())
+            {
+                if (student.getId().equals(studentId))
+                {
+                    studentList.add(student);
+                    break;
+                }
+            }
+        }
+        return studentList;
+    }
+
+    public void setAttendance(String id) {
+        this.attendance.add(id);
+        this.attendance.add("|");
+    }
 }

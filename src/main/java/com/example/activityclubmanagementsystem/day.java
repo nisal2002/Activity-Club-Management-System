@@ -12,38 +12,32 @@ public class day implements Serializable
     private int id;
     private final LocalDate day;
     private event Event;
-    private ArrayList<timeSlot> slots;
+    private final ArrayList<timeSlot> slots;
+    private ArrayList<Integer> venue1;
+    private ArrayList<Integer> venue2;
+    private ArrayList<Integer> venue3;
 
-    public day(LocalDate day,int id) {
+    public day(LocalDate day,int id,int numberOfSlots) {
         this.day = day;
         this.id = id;
         slots = new ArrayList<>();
-        for (int i=0;i<24;i++)
+        for (int i=0;i<numberOfSlots;i++)
         {
             timeSlot slot = new timeSlot(day);
             slots.add(slot);
         }
-//        timeSlot slot1 = new timeSlot(day);
-//        timeSlot slot2 = new timeSlot(day);
-//        timeSlot slot3 = new timeSlot(day);
-//        timeSlot slot4 = new timeSlot(day);
-//        timeSlot slot5 = new timeSlot(day);
-//        timeSlot slot6 = new timeSlot(day);
-//        timeSlot slot7 = new timeSlot(day);
-//        timeSlot slot8 = new timeSlot(day);
-//        timeSlot slot9 = new timeSlot(day);
-//        slots.add(slot1);
-//        slots.add(slot2);
-//        slots.add(slot3);
-//        slots.add(slot4);
-//        slots.add(slot5);
-//        slots.add(slot6);
-//        slots.add(slot7);
-//        slots.add(slot8);
-//        slots.add(slot9);
-
-
-
+        if (numberOfSlots==24)
+        {
+            venue1=new ArrayList<>();
+            venue2=new ArrayList<>();
+            venue3 = new ArrayList<>();
+            for (int i=0;i<24;i++)
+            {
+                venue1.add(0);
+                venue2.add(0);
+                venue3.add(0);
+            }
+        }
 
     }
 
@@ -65,5 +59,17 @@ public class day implements Serializable
 
     public void setEvent(event event) {
         Event = event;
+    }
+
+    public ArrayList<Integer> getVenue1() {
+        return venue1;
+    }
+
+    public ArrayList<Integer> getVenue2() {
+        return venue2;
+    }
+
+    public ArrayList<Integer> getVenue3() {
+        return venue3;
     }
 }
