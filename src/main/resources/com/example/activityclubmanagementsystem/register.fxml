@@ -28,106 +28,117 @@
          </children></Pane>
         <StackPane fx:id="stack" layoutX="199.0" prefHeight="500.0" prefWidth="600.0">
             <children>
-                <Pane fx:id="stupane" prefHeight="200.0" prefWidth="200.0" styleClass="backgroundColor" stylesheets="@style.css">
+            <Pane fx:id="adpane" prefHeight="200.0" prefWidth="200.0" styleClass="backgroundColor" stylesheets="@style.css">
                <children>
-                  <Text layoutX="254.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Student">
-                     <font>
-                        <Font name="System Bold" size="25.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="226.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Student Id">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="87.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="First Name">
+                   <Text layoutX="254.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Admin">
+                       <font>
+                           <Font name="System Bold" size="25.0" />
+                       </font>
+                   </Text>
+                   <Text layoutX="214.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Admin Id">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <Text layoutX="367.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Surname">
+                   <Text layoutX="87.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="First Name">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <Text layoutX="87.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="NIC">
+                   <Text layoutX="367.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Surname">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <Text layoutX="368.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="DOB">
+                   <Text layoutX="87.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="NIC">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <Text layoutX="86.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Gender">
+                   <Text layoutX="368.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="DOB">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <Text layoutX="368.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Email">
+                   <Text layoutX="86.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Gender">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="studentTxtId" layoutX="227.0" layoutY="93.0" prefHeight="25.0" prefWidth="175.0">
+                   <Text layoutX="368.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Email">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                   <TextField fx:id="adminTxtId" layoutX="213.0" layoutY="78.0" prefHeight="25.0" prefWidth="175.0">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="studentTxtFirstN" layoutX="87.0" layoutY="166.0" prefHeight="25.0" prefWidth="175.0">
+                   <TextField fx:id="adminTxtFirstN" layoutX="88.0" layoutY="145.0" prefHeight="25.0" prefWidth="175.0">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="studentTxtLastN" layoutX="368.0" layoutY="166.0" prefHeight="25.0" prefWidth="175.0">
+                   <TextField fx:id="adminTxtLastN" layoutX="368.0" layoutY="146.0" prefHeight="25.0" prefWidth="175.0">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="studentTxtNic" layoutX="87.0" layoutY="237.0" prefHeight="25.0" prefWidth="175.0">
+                   <TextField fx:id="adminTxtNic" layoutX="88.0" layoutY="216.0" prefHeight="25.0" prefWidth="175.0">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="studentTxtEmail" layoutX="368.0" layoutY="308.0" prefHeight="25.0" prefWidth="175.0">
+                   <TextField fx:id="adminTxtEmail" layoutX="369.0" layoutY="284.0" prefHeight="32.0" prefWidth="175.0">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </TextField>
-                  <DatePicker fx:id="studentDateDob" layoutX="368.0" layoutY="237.0" prefHeight="32.0" prefWidth="175.0" />
-                  <Button fx:id="studentBtnRegister" layoutX="190.0" layoutY="456.0" mnemonicParsing="false" onAction="#onStudentRegisterClick" prefHeight="30.0" prefWidth="102.0" text="REGISTER">
+                   <DatePicker fx:id="adminDateDob" layoutX="369.0" layoutY="217.0" prefHeight="32.0" prefWidth="175.0" />
+                   <Button fx:id="adminBtnRegister" layoutX="190.0" layoutY="455.0" mnemonicParsing="false" onAction="#onAdminRegisterClick" prefHeight="32.0" prefWidth="102.0" text="REGISTER">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="studentBtnClear" layoutX="338.0" layoutY="456.0" mnemonicParsing="false" onAction="#onStudentClearClick" prefHeight="30.0" prefWidth="89.0" text="CLEAR">
+                   <Button fx:id="adminBtnClear" layoutX="339.0" layoutY="456.0" mnemonicParsing="false" onAction="#onAdminClearClick" prefHeight="30.0" prefWidth="91.0" text="CLEAR">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <PasswordField fx:id="studentTxtPwd" layoutX="87.0" layoutY="387.0" prefHeight="32.0" prefWidth="175.0">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </PasswordField>
-                  <PasswordField fx:id="studentTxtRePwd" layoutX="368.0" layoutY="387.0" prefHeight="32.0" prefWidth="175.0">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </PasswordField>
-                  <ChoiceBox fx:id="studentChoiceGender" layoutX="85.0" layoutY="308.0" prefHeight="30.0" prefWidth="175.0" styleClass="combo-box" stylesheets="@style.css" />
-                  <Text layoutX="368.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Re Enter Password">
+                  <Text layoutX="224.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Authentication Code">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <Text layoutX="87.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Password">
+                  <PasswordField fx:id="adminTxtAuth" layoutX="227.0" layoutY="418.0" prefHeight="25.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </PasswordField>
+                  <Button fx:id="adminBtnShow" layoutX="549.0" layoutY="365.0" mnemonicParsing="false" onAction="#onAdminShowClick" text="Show" />
+                  <PasswordField fx:id="adminTxtPwd" layoutX="88.0" layoutY="360.0" prefHeight="32.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </PasswordField>
+                  <PasswordField fx:id="adminTxtRePwd" layoutX="369.0" layoutY="361.0" prefHeight="32.0" prefWidth="175.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </PasswordField>
+                  <ChoiceBox fx:id="adminChoiceGender" layoutX="86.0" layoutY="286.0" prefHeight="30.0" prefWidth="175.0" styleClass="text-field" />
+                  <Text layoutX="87.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Password">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <Button fx:id="Atest" layoutX="437.0" layoutY="18.0" mnemonicParsing="false" onAction="#onStest" text="Test" />
+                  <Text layoutX="368.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Re Enter Password">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="Stest" layoutX="437.0" layoutY="19.0" mnemonicParsing="false" onAction="#onAtest" text="Test" />
                </children>
             </Pane>
                 <Pane fx:id="teapane" prefHeight="200.0" prefWidth="200.0" styleClass="backgroundColor" stylesheets="@style.css">
@@ -237,121 +248,106 @@
                   <Button fx:id="Ttest" layoutX="437.0" layoutY="18.0" mnemonicParsing="false" onAction="#onTtest" text="Test" />
                </children>
             </Pane>
-            <Pane fx:id="adpane" prefHeight="200.0" prefWidth="200.0" styleClass="backgroundColor" stylesheets="@style.css">
+                <Pane fx:id="stupane" prefHeight="200.0" prefWidth="200.0" styleClass="backgroundColor" stylesheets="@style.css">
                <children>
-                   <Text layoutX="251.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
-                       <font>
-                           <Font name="System Bold" size="25.0" />
-                       </font>
-                   </Text>
-                   <Text layoutX="100.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Id">
+                  <Text layoutX="254.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Student">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="226.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Student Id">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                   <Text layoutX="92.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
+                  <Text layoutX="87.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="First Name">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                   <Text layoutX="101.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname">
+                  <Text layoutX="367.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Surname">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                   <Text layoutX="121.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NIC">
+                  <Text layoutX="87.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="NIC">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                   <Text layoutX="117.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DOB">
+                  <Text layoutX="368.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="DOB">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                   <Text layoutX="107.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
+                  <Text layoutX="86.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Gender">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                   <Text layoutX="115.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+                  <Text layoutX="368.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Email">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                   <TextField fx:id="adminTxtId" layoutX="222.0" layoutY="45.0" prefHeight="25.0" prefWidth="175.0">
+                  <TextField fx:id="studentTxtId" layoutX="227.0" layoutY="93.0" prefHeight="25.0" prefWidth="175.0">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </TextField>
-                   <TextField fx:id="adminTxtFirstN" layoutX="222.0" layoutY="87.0" prefHeight="25.0" prefWidth="175.0">
+                  <TextField fx:id="studentTxtFirstN" layoutX="87.0" layoutY="166.0" prefHeight="25.0" prefWidth="175.0">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </TextField>
-                   <TextField fx:id="adminTxtLastN" layoutX="222.0" layoutY="130.0" prefHeight="25.0" prefWidth="175.0">
+                  <TextField fx:id="studentTxtLastN" layoutX="368.0" layoutY="166.0" prefHeight="25.0" prefWidth="175.0">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </TextField>
-                   <TextField fx:id="adminTxtNic" layoutX="222.0" layoutY="173.0" prefHeight="25.0" prefWidth="175.0">
+                  <TextField fx:id="studentTxtNic" layoutX="87.0" layoutY="237.0" prefHeight="25.0" prefWidth="175.0">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </TextField>
-                   <TextField fx:id="adminTxtEmail" layoutX="222.0" layoutY="299.0" prefHeight="25.0" prefWidth="175.0">
+                  <TextField fx:id="studentTxtEmail" layoutX="368.0" layoutY="308.0" prefHeight="25.0" prefWidth="175.0">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </TextField>
-                   <DatePicker fx:id="adminDateDob" layoutX="222.0" layoutY="215.0" prefHeight="30.0" prefWidth="175.0" />
-                   <Button fx:id="adminBtnRegister" layoutX="470.0" layoutY="214.0" mnemonicParsing="false" onAction="#onAdminRegisterClick" prefHeight="32.0" prefWidth="74.0" text="Register">
+                  <DatePicker fx:id="studentDateDob" layoutX="368.0" layoutY="237.0" prefHeight="32.0" prefWidth="175.0" />
+                  <Button fx:id="studentBtnRegister" layoutX="190.0" layoutY="456.0" mnemonicParsing="false" onAction="#onStudentRegisterClick" prefHeight="30.0" prefWidth="102.0" text="REGISTER">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Button>
-                   <Button fx:id="adminBtnClear" layoutX="470.0" layoutY="256.0" mnemonicParsing="false" onAction="#onAdminClearClick" prefHeight="32.0" prefWidth="74.0" text="Clear">
+                  <Button fx:id="studentBtnClear" layoutX="338.0" layoutY="456.0" mnemonicParsing="false" onAction="#onStudentClearClick" prefHeight="30.0" prefWidth="89.0" text="CLEAR">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Text layoutX="54.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Authentication Code">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <PasswordField fx:id="adminTxtAuth" layoutX="223.0" layoutY="427.0" prefHeight="25.0" prefWidth="175.0">
+                  <PasswordField fx:id="studentTxtPwd" layoutX="87.0" layoutY="387.0" prefHeight="32.0" prefWidth="175.0">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </PasswordField>
-                  <Button fx:id="adminBtnShow" layoutX="405.0" layoutY="426.0" mnemonicParsing="false" onAction="#onAdminShowClick" text="Show">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Button>
-                  <PasswordField fx:id="adminTxtPwd" layoutX="222.0" layoutY="342.0" prefHeight="32.0" prefWidth="175.0">
+                  <PasswordField fx:id="studentTxtRePwd" layoutX="368.0" layoutY="387.0" prefHeight="32.0" prefWidth="175.0">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </PasswordField>
-                  <PasswordField fx:id="adminTxtRePwd" layoutX="223.0" layoutY="385.0" prefHeight="32.0" prefWidth="175.0">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </PasswordField>
-                  <ChoiceBox fx:id="adminChoiceGender" layoutX="222.0" layoutY="257.0" prefHeight="30.0" prefWidth="175.0" />
-                  <Text layoutX="97.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+                  <ChoiceBox fx:id="studentChoiceGender" layoutX="85.0" layoutY="308.0" prefHeight="30.0" prefWidth="175.0" styleClass="combo-box" stylesheets="@style.css" />
+                  <Text layoutX="368.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Re Enter Password">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <Text layoutX="61.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Re Enter Password">
+                  <Text layoutX="87.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Password">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <Button fx:id="Stest" layoutX="475.0" layoutY="42.0" mnemonicParsing="false" onAction="#onAtest" text="Button" />
+                  <Button fx:id="Atest" layoutX="437.0" layoutY="18.0" mnemonicParsing="false" onAction="#onStest" text="Test" />
                </children>
             </Pane>
             </children>

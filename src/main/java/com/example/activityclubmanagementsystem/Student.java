@@ -12,17 +12,7 @@ public class Student extends person {
 
     }
 
-    public ArrayList<club> getClubs() {
-        return clubs;
-    }
-    public void addClub(club Club)
-    {
-        clubs.add(Club);
-    }
 
-    public void setClubs(ArrayList<club> clubs) {
-        this.clubs = clubs;
-    }
 
     @Override
     public String toString() {
