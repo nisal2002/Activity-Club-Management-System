@@ -1,8 +1,8 @@
 .backgroundColor{
-    -fx-background-color: linear-gradient(to right bottom,maroon, white);
+    -fx-background-color: "#e580ff";
 }
 .backgroundColor2{
-    -fx-background-color: linear-gradient(to left bottom,maroon, white);
+    -fx-background-color: "#bf00ff";
 }
 
 .button{
@@ -27,7 +27,11 @@
 
 .text-field{
     -fx-font-family: "Century Gothic";
-    -fx-background-color: #fec9c9;
+    -fx-background-color: #d9ffcc;
+}
+
+.combo-box{
+    -fx-background-color: "#d9ffcc";
 }
 
 .table-view{
@@ -45,8 +49,4 @@
 
 .calendar-grid {
     -fx-background-color: linear-gradient(to left bottom,#61D8DE, #E839f6);
-}
-
-.combo-box .list-cell{
-    -fx-background-color: #cff4d2;
 }
