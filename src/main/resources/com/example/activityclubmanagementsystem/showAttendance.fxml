@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="452.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood.showAttendanceController">
+   <children>
+      <TableView fx:id="studentTable" layoutX="-3.0" layoutY="186.0" prefHeight="268.0" prefWidth="683.0">
+        <columns>
+          <TableColumn fx:id="studentId" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="studentFirstN" prefWidth="75.0" text="First Name" />
+            <TableColumn fx:id="studentLastN" prefWidth="75.0" text="Last Name" />
+            <TableColumn fx:id="studentGender" prefWidth="75.0" text="Gender" />
+            <TableColumn fx:id="studentEmail" prefWidth="75.0" text="Email" />
+        </columns>
+      </TableView>
+      <Label layoutX="38.0" layoutY="25.0" text="Club" />
+      <Label layoutX="36.0" layoutY="60.0" text="Date" />
+      <Label fx:id="lblTimeSlot" layoutX="36.0" layoutY="95.0" text="TIme Slot" />
+      <Label fx:id="lblTotal" layoutX="36.0" layoutY="130.0" text="Total number of Students" />
+      <Label fx:id="attendanceLblClub" layoutX="226.0" layoutY="25.0" text="Label" />
+      <Label fx:id="attendanceLblDate" layoutX="226.0" layoutY="60.0" text="Label" />
+      <Label fx:id="attendanceLblSlot" layoutX="226.0" layoutY="95.0" text="Label" />
+      <Label fx:id="attendanceLblNumber" layoutX="226.0" layoutY="130.0" text="Label" />
+      <Button fx:id="attendanceBtnReport" layoutX="480.0" layoutY="21.0" mnemonicParsing="false" onAction="#onGenerateReport" prefHeight="45.0" prefWidth="113.0" text="Generate Report" />
+      <Label fx:id="LblEndTime" layoutX="342.0" layoutY="102.0" text="End Time" visible="false" />
+      <Label fx:id="endTime" layoutX="480.0" layoutY="102.0" text="Label" visible="false" />
+   </children>
+</AnchorPane>
