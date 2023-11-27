@@ -1,4 +1,6 @@
 package com.example.activityclubmanagementsystem;
 
-public class teacherController {
+public class teacherController
+{
+
 }

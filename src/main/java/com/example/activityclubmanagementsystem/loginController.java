@@ -16,7 +16,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class loginController {
+public class loginController
+{
+
     @FXML
     private TextField loginID;
     @FXML
