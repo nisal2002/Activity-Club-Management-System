@@ -11,6 +11,7 @@ public class Data {
     private  static final ObservableList<Student> studentList = FXCollections.observableArrayList();
     private static final ObservableList<Admin> adminList = FXCollections.observableArrayList();
     private static final ObservableList<club> clubList =FXCollections.observableArrayList();
+    private static  ObservableList<day> dayList = FXCollections.observableArrayList();
 
     public Data() throws SQLException {
         updateTeacherList();
@@ -345,6 +346,92 @@ public class Data {
             throw new RuntimeException(e);
         }
 
+
+    }
+    public static ObservableList<day> getDayList()
+    {
+        return dayList;
+    }
+    public static void updateDay(day update) throws SQLException {
+        for (day Day:dayList)
+        {
+            if (Day.getDay().equals(update.getDay()))
+            {
+                dayList.set(dayList.indexOf(Day),update);
+            }
+        }
+        Connection connection = getConnection();
+        int id = update.getId();
+
+        String updateTeacher = "UPDATE `days` SET day=? WHERE day_id="+String.valueOf(id)+";";
+        try(PreparedStatement statement = connection.prepareStatement(updateTeacher))
+        {
+            ByteArrayOutputStream BOut = new ByteArrayOutputStream();
+            ObjectOutputStream ObjOut = new ObjectOutputStream(BOut);
+            ObjOut.writeObject(update);
+            ObjOut.close();
+            byte[] serializedObject = BOut.toByteArray();
+
+            statement.setBytes(1,serializedObject);
+            statement.executeUpdate();
+
+        }
+        catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+    public static void addDay(day addDay) throws SQLException {
+        dayList.add(addDay);
+        Connection connection = getConnection();
+        String query5 ="INSERT INTO `days` (day) VALUES(?);";
+        try(PreparedStatement statement = connection.prepareStatement(query5))
+        {
+            ByteArrayOutputStream BOut = new ByteArrayOutputStream();
+            ObjectOutputStream ObjOut = new ObjectOutputStream(BOut);
+            ObjOut.writeObject(addDay);
+            ObjOut.close();
+            byte[] serializedObject = BOut.toByteArray();
+            statement.setBytes(1,serializedObject);
+            statement.executeUpdate();
+
+        }
+        catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+    public static int getmeetingID()
+    {
+        BufferedReader reader = null;
+        String line="";
+        String[] row = new String[0];
+        try {
+            reader = new BufferedReader(new FileReader("src/meetingId.csv"));
+            while ((line=reader.readLine())!=null){
+                row=line.split(",");
+            }
+            reader.close();
+        }
+        catch (IOException e){e.printStackTrace();}
+
+        return Integer.parseInt(row[0]);
+    }
+    public static void incrementMeetingID()
+    {
+        int newId = getmeetingID()+1;
+        try {
+            FileWriter csvfile = new FileWriter("src/meetingId.csv");
+            PrintWriter write = new PrintWriter(csvfile);
+            StringBuilder build = new StringBuilder();
+            build.append(newId);
+            build.append(",");
+            write.println(build);
+            write.close();
+        }
+        catch (IOException e){}
 
     }
 
