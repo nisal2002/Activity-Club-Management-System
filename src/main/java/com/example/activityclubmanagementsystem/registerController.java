@@ -105,7 +105,7 @@ public class registerController {
         clearTeacher();
     }
     private void clearTeacher() {
-        teacherTxtID.clear();
+//        teacherTxtID.clear();
         teacherTxtFirstN.clear();
         teacherTxtLastN.clear();
         teacherTxtNic.clear();
