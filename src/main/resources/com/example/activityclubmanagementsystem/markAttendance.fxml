@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="470.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood.markAttendanceController">
+<AnchorPane prefHeight="470.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.activityclubmanagementsystem.markAttendanceController">
    <children>
       <Text layoutX="57.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club" />
       <Text layoutX="58.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
