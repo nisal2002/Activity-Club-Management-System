@@ -1,5 +1,7 @@
 package com.example.activityclubmanagementsystem;
 
+import java.time.LocalDate;
+
 public class Teacher extends person
 {
     private club inCharge;
@@ -9,11 +11,37 @@ public class Teacher extends person
     }
 
     public club getInCharge() {
-        return inCharge;
+        club returnClub = null;
+
+        if (inCharge!=null)
+        {
+            for (club Club:Data.getClubList())
+            {
+                if (Club.getClubId().equals(inCharge.getClubId()))
+                {
+                    returnClub=Club;
+                }
+            }
+        }
+        return returnClub;
     }
 
     public void setInCharge(club inCharge) {
         this.inCharge = inCharge;
+    }
+
+    public String getFullName()
+    {
+        String first=null;
+        if (getGender().equals("Male"))
+        {
+            first="Mr.";
+        }
+        else
+        {
+            first="Mrs.";
+        }
+        return first+getFirstName()+" "+getSurName();
     }
 
     @Override

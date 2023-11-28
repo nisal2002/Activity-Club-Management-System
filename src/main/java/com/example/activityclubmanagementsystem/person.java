@@ -4,7 +4,8 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-abstract class person implements Serializable {
+abstract class person implements Serializable
+{
     private String id;
     private String firstName;
     private String SurName;
@@ -12,6 +13,7 @@ abstract class person implements Serializable {
     private String dob;
     private String gender;
     private String email;
+
     private String password;
     @Serial
     private static final long serialVersionUID = -996908784191997247L;

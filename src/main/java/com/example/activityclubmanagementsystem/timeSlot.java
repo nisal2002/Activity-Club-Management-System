@@ -3,6 +3,7 @@ package com.example.activityclubmanagementsystem;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+//Sevindu
 public class timeSlot implements Serializable
 {
     private meeting venue1;

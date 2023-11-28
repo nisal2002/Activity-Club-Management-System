@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+
 public class scheduleMeetingController implements Initializable
 {
     @FXML
@@ -34,6 +35,7 @@ public class scheduleMeetingController implements Initializable
 
     ObservableList<day> dayList = FXCollections.observableArrayList(Data.getDayList());
 
+    //Sevindu
     public scheduleMeetingController(int id, LocalDate date, com.example.activityclubmanagementsystem.club club, String venue, int timeslot) {
         this.id = id;
         this.date = date;
@@ -42,6 +44,7 @@ public class scheduleMeetingController implements Initializable
         this.timeslot = timeslot;
     }
 
+    //Sevindu
     public void onScheduleClick(ActionEvent event) throws SQLException {
 
 
@@ -102,13 +105,14 @@ public class scheduleMeetingController implements Initializable
 
 
 
-
+    //Sevindu
     public void onCancelClick(ActionEvent event)
     {
         Stage stage = (Stage) (TxtVenue.getScene().getWindow());
         stage.close();
     }
 
+    //Sevindu
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         TxtClubName.setText(club.getClubName());
