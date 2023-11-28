@@ -19,6 +19,7 @@ public class event implements Serializable
     private String venue;
     private ArrayList<String> attendance = new ArrayList<>();
 
+    //Sevindu
     public event(club heldByClub, String eventName, LocalTime startTime, LocalTime endTime, LocalDate date, String description,String venue) {
         this.heldByClub = heldByClub;
         this.eventName = eventName;
@@ -84,6 +85,8 @@ public class event implements Serializable
     public String getVenue() {
         return venue;
     }
+
+    //Sevindu
     private ArrayList<Student> getStudents()
     {
         ArrayList<Student> studentList = new ArrayList<>();
