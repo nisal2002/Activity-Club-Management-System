@@ -13,16 +13,20 @@ public class club implements Serializable
     private String clubId;
     private Teacher inCharge;
     private String description;
-    private ArrayList<String> boardMembers;
+    private ArrayList<Student> boardMembers = new ArrayList<>();
     private ArrayList<Student> members=new ArrayList<>();
-
+    private ArrayList<meeting> attendence;
 
     public club(String Id,String clubName,Teacher inCharge,String desc) {
         this.clubId = Id;
         this.clubName = clubName;
         this.inCharge = inCharge;
         this.description = desc;
-
+        attendence = new ArrayList<>();
+        for (int i=0;i<6;i++)
+        {
+            boardMembers.add(null);
+        }
     }
 
     public String getClubName() {
@@ -41,7 +45,7 @@ public class club implements Serializable
         return description;
     }
 
-    public ArrayList<String> getBoardMembers() {
+    public ArrayList<Student> getBoardMembers() {
         return boardMembers;
     }
 
@@ -50,7 +54,11 @@ public class club implements Serializable
     }
 
 
-    public void setBoardMembers(ArrayList<String> boardMembers) {
+    public ArrayList<meeting> getAttendence() {
+        return attendence;
+    }
+
+    public void setBoardMembers(ArrayList<Student> boardMembers) {
         this.boardMembers = boardMembers;
     }
 
