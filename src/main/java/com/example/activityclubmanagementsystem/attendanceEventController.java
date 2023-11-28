@@ -69,49 +69,49 @@ public class attendanceEventController implements Initializable
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
 
-            lblEventName.setText(CurrentEvent.getEventName());
-            lblHeldBy.setText(CurrentEvent.getHeldByClub().getClubName());
-            lblVenue.setText(CurrentEvent.getVenue());
-            lblDate.setText(CurrentEvent.getDate().toString());
-            lblStart.setText(CurrentEvent.getStartTime().toString());
-            lblEnd.setText(CurrentEvent.getEndTime().toString());
-            lblDesc.setText(CurrentEvent.getDescription());
-            ObservableList<Student> studentList = FXCollections.observableArrayList(CurrentEvent.getStudents());
-            studentId.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<Student, String> studentStringCellDataFeatures) {
-                    return new ReadOnlyObjectWrapper<>(studentStringCellDataFeatures.getValue().getId());
-                }
-            });
-            FirstName.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<Student, String> studentStringCellDataFeatures) {
-                    return new ReadOnlyObjectWrapper<>(studentStringCellDataFeatures.getValue().getFirstName());
-                }
-            });
-            LastName.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<Student, String> studentStringCellDataFeatures) {
-                    return new ReadOnlyObjectWrapper<>(studentStringCellDataFeatures.getValue().getSurName());
-                }
-            });
-            ISMember.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<Student, String> studentStringCellDataFeatures) {
-                    return new ReadOnlyObjectWrapper<>(studentStringCellDataFeatures.getValue().isMember(CurrentEvent.getHeldByClub().getClubId()));
-                }
-            });
-            Email.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<Student, String> studentStringCellDataFeatures) {
-                    return new ReadOnlyObjectWrapper<>(studentStringCellDataFeatures.getValue().getEmail());
-                }
-            });
-            attendanceTable.setItems(studentList);
+        lblEventName.setText(CurrentEvent.getEventName());
+        lblHeldBy.setText(CurrentEvent.getHeldByClub().getClubName());
+        lblVenue.setText(CurrentEvent.getVenue());
+        lblDate.setText(CurrentEvent.getDate().toString());
+        lblStart.setText(CurrentEvent.getStartTime().toString());
+        lblEnd.setText(CurrentEvent.getEndTime().toString());
+        lblDesc.setText(CurrentEvent.getDescription());
+        ObservableList<Student> studentList = FXCollections.observableArrayList(CurrentEvent.getStudents());
+        studentId.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Student, String> studentStringCellDataFeatures) {
+                return new ReadOnlyObjectWrapper<>(studentStringCellDataFeatures.getValue().getId());
+            }
+        });
+        FirstName.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Student, String> studentStringCellDataFeatures) {
+                return new ReadOnlyObjectWrapper<>(studentStringCellDataFeatures.getValue().getFirstName());
+            }
+        });
+        LastName.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Student, String> studentStringCellDataFeatures) {
+                return new ReadOnlyObjectWrapper<>(studentStringCellDataFeatures.getValue().getSurName());
+            }
+        });
+        ISMember.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Student, String> studentStringCellDataFeatures) {
+                return new ReadOnlyObjectWrapper<>(studentStringCellDataFeatures.getValue().isMember(CurrentEvent.getHeldByClub().getClubId()));
+            }
+        });
+        Email.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Student, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Student, String> studentStringCellDataFeatures) {
+                return new ReadOnlyObjectWrapper<>(studentStringCellDataFeatures.getValue().getEmail());
+            }
+        });
+        attendanceTable.setItems(studentList);
 
 
-            
-            
+
+
     }
 
     public void onReportClick(ActionEvent event)
@@ -211,7 +211,7 @@ public class attendanceEventController implements Initializable
         }
         catch (IOException e)
         {
-                warnings.FileError();
+            warnings.FileError();
         }
     }
     private String getSpaces(int max,String string)

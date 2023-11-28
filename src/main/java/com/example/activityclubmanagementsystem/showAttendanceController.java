@@ -63,7 +63,7 @@ public class showAttendanceController implements Initializable
     private Label endTime;
 
 
-    public showAttendanceController(meeting currentMeeting, boolean ifmeeting) {
+    public showAttendanceController(meeting currentMeeting,boolean ifmeeting) {
 
         this.currentMeeting = currentMeeting;
         this.ifMeeting=ifmeeting;
@@ -301,7 +301,7 @@ public class showAttendanceController implements Initializable
         }
         populateStudent(currentMeeting.getStudentList());
 
-        
+
 
     }
     private void populateStudent(ObservableList<Student> students)
@@ -337,6 +337,6 @@ public class showAttendanceController implements Initializable
             }
         });
         studentTable.setItems(students);
-        
+
     }
 }

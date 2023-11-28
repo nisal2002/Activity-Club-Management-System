@@ -3,9 +3,11 @@ package com.example.activityclubmanagementsystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -28,10 +30,10 @@ public class markAttendanceController implements Initializable {
     meeting CurrentMeeing;
     Student student;
 
-    public markAttendanceController(meeting currentMeeting, Student student)
+    public markAttendanceController(meeting currentMeeting,Student student)
     {
-            this.CurrentMeeing = currentMeeting;
-            this.student = student;
+        this.CurrentMeeing = currentMeeting;
+        this.student = student;
 
 
     }
