@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="519.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood.attendanceEventController">
+<AnchorPane prefHeight="519.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.activityclubmanagementsystem.attendanceEventController">
    <children>
       <Label layoutX="26.0" layoutY="23.0" text="Event NAme" />
       <Label layoutX="26.0" layoutY="57.0" text="Held By" />

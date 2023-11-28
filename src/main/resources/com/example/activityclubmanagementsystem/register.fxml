@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ood.registerController">
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.activityclubmanagementsystem.registerController">
     <children>
         <Pane prefHeight="500.0" prefWidth="200.0" styleClass="backgroundColor2" stylesheets="@style.css">
          <children>
