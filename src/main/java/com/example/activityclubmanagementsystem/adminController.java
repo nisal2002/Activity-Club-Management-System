@@ -4,16 +4,39 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
+
+import java.io.IOException;
 
 
 public class adminController {
-
+    @FXML
+    private Button createClbBtn;
+    @FXML
+    private Button createBtnCreate;
+    @FXML
+    private Button viewClbBtn;
+    @FXML
+    private Button profileBtn;
+    @FXML
+    private Pane createClbPane;
+    @FXML
+    private Pane viewClbPane;
+    @FXML
+    private Pane profilePane;
     @FXML
     private TextField createTxtTeacherId;
     @FXML
@@ -31,8 +54,34 @@ public class adminController {
     private TableColumn<Teacher,String> teachersInCharge;
     @FXML
     private TableView<Teacher> createTblTeachers;
+    private boolean isRemoving=false;
     private Teacher incharge;
 
+    @FXML
+    public void onBackClick(ActionEvent event) throws IOException {
+        Parent currentPage= FXMLLoader.load(getClass().getResource("login.fxml"));
+        Scene currentpageScene = new Scene(currentPage);
+        Stage addStage =(Stage)((Node)event.getSource()).getScene().getWindow();
+        addStage.setScene(currentpageScene);
+        addStage.show();
+    }
+    @FXML
+    public void selectClick(ActionEvent actionEvent) {
+        if (actionEvent.getSource() == createClbBtn) {
+            createClbPane.toFront();
+            createBtnCreate.setText("create");
+            isRemoving=false;
+        }
+        if (actionEvent.getSource() == viewClbBtn) {
+            viewClbPane.toFront();
+        }
+        if (actionEvent.getSource() == viewClbBtn) {
+            viewClbPane.toFront();
+        }
+        if (actionEvent.getSource() == profileBtn) {
+            profilePane.toFront();
+        }
+    }
     ObservableList<Teacher> teacherList = FXCollections.observableArrayList(Data.getTeacherList());
     private void populateTeachersTable(int field, String input)
     {
