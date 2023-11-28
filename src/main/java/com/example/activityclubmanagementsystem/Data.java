@@ -348,10 +348,14 @@ public class Data {
 
 
     }
+
+    //Sevindu
     public static ObservableList<day> getDayList()
     {
         return dayList;
     }
+
+    //Sevindu
     public static void updateDay(day update) throws SQLException {
         for (day Day:dayList)
         {
@@ -383,6 +387,8 @@ public class Data {
 
 
     }
+
+    //Sevindu
     public static void addDay(day addDay) throws SQLException {
         dayList.add(addDay);
         Connection connection = getConnection();
@@ -403,6 +409,8 @@ public class Data {
             throw new RuntimeException(e);
         }
     }
+
+    //Sevindu
     public static int getmeetingID()
     {
         BufferedReader reader = null;
@@ -419,6 +427,8 @@ public class Data {
 
         return Integer.parseInt(row[0]);
     }
+
+    //Sevindu
     public static void incrementMeetingID()
     {
         int newId = getmeetingID()+1;

@@ -17,6 +17,7 @@ public class day implements Serializable
     private ArrayList<Integer> venue2;
     private ArrayList<Integer> venue3;
 
+    //Sevindu
     public day(LocalDate day,int id,int numberOfSlots) {
         this.day = day;
         this.id = id;
@@ -41,6 +42,7 @@ public class day implements Serializable
 
     }
 
+    //Sevindu
     public LocalDate getDay() {
         return day;
     }

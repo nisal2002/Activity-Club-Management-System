@@ -66,6 +66,8 @@ public class teacherController implements Initializable
     private LocalDate focus;
     private LocalDate today;
     ArrayList<TextField> fields;
+
+    //Sevindu
     private ArrayList<LocalDate> getWeek()
     {
         String s = focus.getDayOfWeek().toString();
@@ -94,6 +96,8 @@ public class teacherController implements Initializable
 
 
     }
+
+    //Sevindu
     private void populateSchedule ()
     {
         ArrayList<LocalDate> daysInWeek = getWeek();
@@ -374,6 +378,8 @@ public class teacherController implements Initializable
 
 
     }
+
+    //Sevindu
     private void scheduleMeeting(int row,int coloumn,String coloumnid) throws IOException {
         LocalDate selected =getSelectedDate(coloumnid);
         club meetingClub=null;
@@ -415,6 +421,8 @@ public class teacherController implements Initializable
 
 
     }
+
+    //Sevindu
     private LocalDate getSelectedDate(String coloumnId)
     {
         String focusDay = focus.getDayOfWeek().toString().toLowerCase();
@@ -447,6 +455,8 @@ public class teacherController implements Initializable
 
 
     }
+
+    //Sevindu
     public void onSelect(ActionEvent event)
     {
         focus = teacherDateSelect.getValue();
@@ -455,7 +465,7 @@ public class teacherController implements Initializable
 
     }
 
-
+    //Sevindu
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         today = LocalDate.now();

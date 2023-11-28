@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+//Sevindu
 public class meeting  implements Serializable {
     private int meetingID;
     LocalDate day;
@@ -23,7 +24,7 @@ public class meeting  implements Serializable {
     private LocalTime start;
     private LocalTime end;
 
-
+    //Sevindu
     public meeting(int Id, LocalDate  day, club club , String Venue, int timeSlot) {
         this.day=day;
         this.meetingID = Id;
@@ -55,6 +56,7 @@ public class meeting  implements Serializable {
         attendence.add(student);
     }
 
+    //Sevindu
     public ArrayList<String> getAttendence() {
         return attendence;
     }
@@ -121,6 +123,7 @@ public class meeting  implements Serializable {
         this.end = end;
     }
 
+    //Sevindu
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
