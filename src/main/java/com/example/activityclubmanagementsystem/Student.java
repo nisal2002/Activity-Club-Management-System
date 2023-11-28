@@ -1,6 +1,10 @@
 package com.example.activityclubmanagementsystem;
 
+import java.time.LocalDate;
+import java.time.Year;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class Student extends person {
     private ArrayList<club> clubs;
@@ -10,6 +14,26 @@ public class Student extends person {
         super(studentID, fname, sname, nic, dob, gender, email, pwd);
         clubs = new ArrayList<>();
 
+    }
+    public String getFullName()
+    {
+        String first=null;
+        if (getGender().equals("Male"))
+        {
+            first="Master.";
+        }
+        else
+        {
+            first="Miss.";
+        }
+        return first+getFirstName()+" "+getSurName();
+    }
+    public int getGrade()
+    {
+        int birthYear= LocalDate.parse(getDob()).getYear();
+        int nowYear = LocalDate.now().getYear();
+        int grade = (birthYear+6)-nowYear;
+        return grade;
     }
 
     public ArrayList<club> getClubs() {
@@ -22,6 +46,29 @@ public class Student extends person {
 
     public void setClubs(ArrayList<club> clubs) {
         this.clubs = clubs;
+    }
+    public String isMember(String clubId)
+    {
+        boolean member=false;
+        String s=null;
+        for (club Club:clubs)
+        {
+            if (Club.getClubId().equals(clubId))
+            {
+                member=true;
+                break;
+            }
+        }
+        if (member)
+        {
+            s="yes";
+        }
+        else
+        {
+            s="no";
+        }
+        return s;
+
     }
 
     @Override
