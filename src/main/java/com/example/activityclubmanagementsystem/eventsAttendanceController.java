@@ -54,7 +54,7 @@ public class eventsAttendanceController implements Initializable {
         this.currentStudent = currentStudent;
     }
 
-    public void onAttendClick(ActionEvent event)
+    public void onAttendClick(ActionEvent event)  // attend for event
     {
         boolean hasAttended= false;
         ArrayList<String> students = currentEvent.getAttendance();

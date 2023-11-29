@@ -1135,7 +1135,7 @@ public class teacherController implements Initializable {
 
     }
 
-    private void scheduleMeeting(int row,int coloumn,String coloumnid) throws IOException {
+    private void scheduleMeeting(int row,int coloumn,String coloumnid) throws IOException { //row = which period colmn id, colmn id = which colmn
         LocalDate selected =getSelectedDate(coloumnid);
         club meetingClub=null;
         String venue;

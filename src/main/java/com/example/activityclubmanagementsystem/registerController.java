@@ -213,7 +213,7 @@ public class registerController implements Initializable {
     {
 
     }
-    private getText getTeacher()
+    private getText getTeacher() //student details filling
     {
         String firstName = null;
         String surName= null;
@@ -373,7 +373,7 @@ public class registerController implements Initializable {
 
         }
     }
-    public void onStudentClearClick(ActionEvent event)
+    public void onStudentClearClick(ActionEvent event) // clear student record
     {
         clearStudent();
     }
@@ -517,7 +517,7 @@ public class registerController implements Initializable {
 
     }
     ///////////////////////////////Admin Methods//////////////////////////
-    public void onAdminRegisterClick(ActionEvent event) throws SQLException {
+    public void onAdminRegisterClick(ActionEvent event) throws SQLException { //register as admin
         getText input = getAdmin();
         ArrayList<String> inputs = input.inputs;
         if (input.complete.equals(true)&&inputs.get(8).equals("12345"))
@@ -542,7 +542,7 @@ public class registerController implements Initializable {
 
 
     }
-    public void onAdminClearClick(ActionEvent event)
+    public void onAdminClearClick(ActionEvent event)  // clear fields
     {
         adminClear();
     }
@@ -943,14 +943,14 @@ public class registerController implements Initializable {
         adminTxtAuth.setVisible(true);
     }
 
-    public void teacherAuthPress(MouseEvent mouseEvent)
+    public void teacherAuthPress(MouseEvent mouseEvent) // ath code show
     {
         teacherTxtAuthShow.setText(teacherTxtAuth.getText());
         teacherTxtAuthShow.setVisible(true);
         teacherTxtAuth.setVisible(false);
     }
 
-    public void teacherAuthRelease(MouseEvent mouseEvent)
+    public void teacherAuthRelease(MouseEvent mouseEvent)  // auth code unshow
     {
         teacherTxtAuthShow.setText(" ");
         teacherTxtAuthShow.setVisible(false);
@@ -977,7 +977,7 @@ public class registerController implements Initializable {
         StudenttxtPwdShow.setVisible(false);
     }
 
-    public void onTeacherPwdShowPress(MouseEvent mouseEvent)
+    public void onTeacherPwdShowPress(MouseEvent mouseEvent) //
     {
         teacherTxtShowPwd.setText(teacherTxtPwd.getText());
         teacherTxtShowRePwd.setText(teacherTxtRePwd.getText());

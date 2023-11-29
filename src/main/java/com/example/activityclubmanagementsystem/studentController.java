@@ -261,7 +261,7 @@ public class studentController implements Initializable {
         addStage.show();
     }
     @FXML
-    public void selectClick(ActionEvent actionEvent) {
+    public void selectClick(ActionEvent actionEvent) {  //select pane for function
         if (actionEvent.getSource() == joinClbBtn) {
             joinClbPane.toFront();
         }
@@ -704,7 +704,7 @@ public class studentController implements Initializable {
 
 
     }
-    private void populateJoinClub(ObservableList<club> clubList)
+    private void populateJoinClub(ObservableList<club> clubList) //joining club
     {
         ObservableList<String> clubId = FXCollections.observableArrayList();
         ObservableList<club> clubs= FXCollections.observableArrayList();
@@ -1668,7 +1668,7 @@ public class studentController implements Initializable {
 
     }
 
-    public void onMousePressed(MouseEvent mouseEvent)
+    public void onMousePressed(MouseEvent mouseEvent) //click password
     {
         seePwd.setText(profileTxtPwd.getText());
         seeRePwd.setText(profileTxtRePwd.getText());
@@ -1678,7 +1678,7 @@ public class studentController implements Initializable {
         profileTxtRePwd.setVisible(false);
     }
 
-    public void onMouseReleased(MouseEvent mouseEvent)
+    public void onMouseReleased(MouseEvent mouseEvent)  //release mouse to unshow password
     {
         seeRePwd.setVisible(false);
         seePwd.setVisible(false);

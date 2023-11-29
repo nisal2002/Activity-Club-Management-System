@@ -87,7 +87,7 @@ public class event implements Serializable
     }
 
     //Sevindu
-    ArrayList<Student> getStudents()
+    ArrayList<Student> getStudents()  //get student to mark attendance
     {
         ArrayList<Student> studentList = new ArrayList<>();
         for (String studentId:attendance)

@@ -137,7 +137,7 @@ public class adminController implements Initializable {
     }
 
     @FXML
-    public void onBackClick(ActionEvent event) throws IOException {
+    public void onBackClick(ActionEvent event) throws IOException { //go to prv pane
         Parent currentPage= FXMLLoader.load(getClass().getResource("login.fxml"));
         Scene currentpageScene = new Scene(currentPage);
         Stage addStage =(Stage)((Node)event.getSource()).getScene().getWindow();
@@ -145,7 +145,7 @@ public class adminController implements Initializable {
         addStage.show();
     }
     @FXML
-    public void selectClick(ActionEvent actionEvent) {
+    public void selectClick(ActionEvent actionEvent) { //select panes
         if (actionEvent.getSource() == createClbBtn) {
             createClbPane.toFront();
             createBtnCreate.setText("create");
@@ -174,8 +174,7 @@ public class adminController implements Initializable {
         createTxtTeacherLastN.clear();
         createTxtDesc.clear();
     }
-    public void onTest(ActionEvent event)
-    {
+    public void onTest(ActionEvent event) { //test data to insert
         ArrayList<String> clubNames = new ArrayList<>();
         clubNames.add("Chess Club");
         clubNames.add("Photography Society");
@@ -196,7 +195,7 @@ public class adminController implements Initializable {
         createTxtName.setText(clubNames.get(i));
         createTxtDesc.setText(clubDescriptions.get(i));
     }
-    public void onClubCreate(ActionEvent event) throws SQLException {
+    public void onClubCreate(ActionEvent event) throws SQLException { //create club button click doing this
         if (!isRemoving)
         {
             getText input = getClubDetails();
@@ -241,7 +240,7 @@ public class adminController implements Initializable {
         {
             createTxtclubId.setText(toRemoveTeacher.getClubId());
             createTxtName.setText(toRemoveTeacher.getClubName());
-            createTxtTeacherId.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+            createTxtTeacherId.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;"); //red colors for when not filled fields
             createTxtTeacherFirstN.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
             createTxtTeacherLastN.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
             if (incharge!=null)
@@ -289,7 +288,7 @@ public class adminController implements Initializable {
         populateTeachersTable(3,input);
     }
 
-    public void onIdEnter(KeyEvent event)
+    public void onIdEnter(KeyEvent event) //select teacher id
     {
         createTblTeachers.getSelectionModel().select(null);
         String input = createTxtTeacherId.getText();
@@ -351,7 +350,7 @@ public class adminController implements Initializable {
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)
+    public void initialize(URL url, ResourceBundle resourceBundle) // create tables in this method
     {
         ;
         createTxtclubId.setDisable(true);
@@ -377,7 +376,7 @@ public class adminController implements Initializable {
         profileTxtFrstN.setTextFormatter(new TextFormatter<>(filter));
         profileTxtLastN.setTextFormatter(new TextFormatter<>(filter));
     }
-    private void populateTeachersTable(int field, String input)
+    private void populateTeachersTable(int field, String input) // teachers table insert items
     {
         /// field =1 all teachers| field =2 filtered by id | field =3 filtered by first name| field =4 filtered by last name
         ObservableList<Teacher> filteredList = FXCollections.observableArrayList();
@@ -620,7 +619,7 @@ public class adminController implements Initializable {
         }
     }
 
-    public void onMousePressed(MouseEvent mouseEvent)
+    public void onMousePressed(MouseEvent mouseEvent)  //clicking the mouse
     {
         seePwd.setText(profileTxtPwd.getText());
         seeRePwd.setText(profileTxtRePwd.getText());
@@ -630,14 +629,14 @@ public class adminController implements Initializable {
         profileTxtRePwd.setVisible(false);
     }
 
-    public void onMouseReleased(MouseEvent mouseEvent)
+    public void onMouseReleased(MouseEvent mouseEvent)  //relase mouse
     {
         seeRePwd.setVisible(false);
         seePwd.setVisible(false);
         profileTxtPwd.setVisible(true);
         profileTxtRePwd.setVisible(true);
     }
-    public void onTeacherRemove(ActionEvent event)
+    public void onTeacherRemove(ActionEvent event) //code for replace teacher from club
     {
         if (toRemoveTeacher!=null)
         {
@@ -647,7 +646,7 @@ public class adminController implements Initializable {
         }
         populateTeachersTable(1,"");
     }
-    private void populateViewClub()
+    private void populateViewClub() //show clubs
     {
         viewClubId.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<club, String>, ObservableValue<String>>() {
             @Override

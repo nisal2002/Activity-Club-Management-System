@@ -66,7 +66,7 @@ public class attendanceEventController implements Initializable
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)
+    public void initialize(URL url, ResourceBundle resourceBundle)   //tables populate
     {
 
         lblEventName.setText(CurrentEvent.getEventName());
@@ -114,10 +114,10 @@ public class attendanceEventController implements Initializable
 
     }
 
-    public void onReportClick(ActionEvent event)
+    public void onReportClick(ActionEvent event)  //generating report
     {
         DirectoryChooser directory = new DirectoryChooser();
-        directory.setInitialDirectory(new File("C:\\"));
+        directory.setInitialDirectory(new File("C:\\")); //starting the path name. if errors comment this line
         File selected = directory.showDialog(new Stage());
         try {
 

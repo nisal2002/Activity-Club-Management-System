@@ -24,7 +24,7 @@ public class Data
     /////////////////////////teachers///////////////////////////////
 
 
-    public static void updateTeacherList() throws SQLException {
+    public static void updateTeacherList() throws SQLException { //updating teacher
         Connection connection = getConnection();
         String query = "SELECT * FROM `teachers`;";
         try(PreparedStatement statement = connection.prepareStatement(query))
@@ -46,7 +46,7 @@ public class Data
 
 
     }
-    public static void addTeacher(Teacher addTeacher)
+    public static void addTeacher(Teacher addTeacher) // add new teacher into db
     {
         teacherList.add(addTeacher);
         try {
@@ -80,7 +80,7 @@ public class Data
     }
     /////////////////////////////Student//////////////////////////////////
 
-    public static void addStudent(Student addStudent) throws SQLException {
+    public static void addStudent(Student addStudent) throws SQLException {  //adding student
         studentList.add(addStudent);
         Connection connection = getConnection();
         String query5 ="INSERT INTO `students` (student) VALUES(?);";
@@ -101,7 +101,7 @@ public class Data
         }
 
     }
-    public static void updateStudentList() throws SQLException {
+    public static void updateStudentList() throws SQLException { //update created student list
         Connection connection = getConnection();
         String query = "SELECT * FROM `students`;";
         try(PreparedStatement statement = connection.prepareStatement(query))
@@ -164,7 +164,7 @@ public class Data
     {
         return adminList;
     }
-    public static void updateAdminList() throws SQLException {
+    public static void updateAdminList() throws SQLException { //updating student list
         Connection connection = getConnection();
         String query = "SELECT * FROM `admins`;";
         try(PreparedStatement statement = connection.prepareStatement(query))
@@ -186,7 +186,7 @@ public class Data
 
 
     }
-    public static void addAdmin(Admin addAdmin) throws SQLException {
+    public static void addAdmin(Admin addAdmin) throws SQLException {  // add new admin
         adminList.add(addAdmin);
 
         Connection connection = getConnection();
@@ -272,7 +272,7 @@ public class Data
         }
 
     }
-    public static void addClub(club addclub) throws SQLException {
+    public static void addClub(club addclub) throws SQLException { // adding new clubs
         clubList.add(addclub);
         Connection connection = getConnection();
         String query5 ="INSERT INTO `clubs1` (club) VALUES(?);";
@@ -319,7 +319,6 @@ public class Data
 
             }
         }
-        printTeacher();
 
     }
     public static ObservableList<club> getClubList()
@@ -327,17 +326,7 @@ public class Data
         return clubList;
     }
 
-
-
-
-    public static void printTeacher()
-    {
-        for (Teacher t:teacherList)
-        {
-            System.out.println(t.toString());
-        }
-    }
-    public static String getNextId(String table) throws SQLException {
+    public static String getNextId(String table) throws SQLException {  //getting the next auto increment id from table
 
         Connection connection = getConnection();
         String id = null;
@@ -363,7 +352,7 @@ public class Data
     }
 
 
-    private static Connection getConnection() throws SQLException {
+    private static Connection getConnection() throws SQLException { //database call
         return DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/clubmanager",
                 "root",
