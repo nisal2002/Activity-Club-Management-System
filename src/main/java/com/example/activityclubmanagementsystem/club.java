@@ -4,8 +4,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class club implements Serializable
-{
+public class club implements Serializable {
     @Serial
     private static final long serialVersionUID = -996908784191997275L;
 
@@ -29,12 +28,11 @@ public class club implements Serializable
         }
     }
 
-    public String getClubName() {
-        return clubName;
-    }
-
     public String getClubId() {
         return clubId;
+    }
+    public String getClubName() {
+        return clubName;
     }
 
     public Teacher getInCharge() {
@@ -53,6 +51,10 @@ public class club implements Serializable
         return members;
     }
 
+    public void setInCharge(Teacher inCharge) {
+        this.inCharge = inCharge;
+    }
+
 
     public ArrayList<meeting> getAttendence() {
         return attendence;
@@ -69,11 +71,6 @@ public class club implements Serializable
 //    public void setAttendence(ArrayList<ArrayList<String>> attendence) {
 //        this.attendence = attendence;
 //    }
-
-
-    public void setInCharge(Teacher inCharge) {
-        this.inCharge = inCharge;
-    }
 
     @Override
     public String toString() {  //

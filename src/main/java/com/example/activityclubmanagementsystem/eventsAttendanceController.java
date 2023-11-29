@@ -47,7 +47,27 @@ public class eventsAttendanceController implements Initializable {
     @FXML
     private Label attendLblName;
 
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
+        attendLblName.setText(currentEvent.getEventName());
+        AttendTxtClub.setText(currentEvent.getHeldByClub().getClubName());
+        attendTxtDate.setText(currentEvent.getDate().toString());
+        attendTxtVenue.setText(currentEvent.getVenue());
+        startTime.setText(currentEvent.getStartTime().toString());
+        endTime.setText(currentEvent.getEndTime().toString());
+        String first=null;
+        if (currentEvent.getHeldByClub().getInCharge().getGender().equals("Male"))
+        {
+            first="Mr.";
+        }
+        else
+        {
+            first="Mrs.";
+        }
+        attendTxtTeacher.setText(first+currentEvent.getHeldByClub().getInCharge().getFirstName()+" "+currentEvent.getHeldByClub().getInCharge().getSurName());
+        attendTxtDescription.setText(currentEvent.getDescription());
+    }
     public eventsAttendanceController(event CurrentEvent, Student currentStudent)
     {
         this.currentEvent = CurrentEvent;
@@ -81,30 +101,5 @@ public class eventsAttendanceController implements Initializable {
     {
         Stage st=(Stage) attendTxtDescription.getScene().getWindow();
         st.close();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)
-    {
-        attendLblName.setText(currentEvent.getEventName());
-        AttendTxtClub.setText(currentEvent.getHeldByClub().getClubName());
-        attendTxtDate.setText(currentEvent.getDate().toString());
-        attendTxtVenue.setText(currentEvent.getVenue());
-        startTime.setText(currentEvent.getStartTime().toString());
-        endTime.setText(currentEvent.getEndTime().toString());
-        String first=null;
-        if (currentEvent.getHeldByClub().getInCharge().getGender().equals("Male"))
-        {
-            first="Mr.";
-        }
-        else
-        {
-            first="Mrs.";
-        }
-        attendTxtTeacher.setText(first+currentEvent.getHeldByClub().getInCharge().getFirstName()+" "+currentEvent.getHeldByClub().getInCharge().getSurName());
-        attendTxtDescription.setText(currentEvent.getDescription());
-
-
-
     }
 }

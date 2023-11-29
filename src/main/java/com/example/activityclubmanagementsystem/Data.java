@@ -17,69 +17,16 @@ public class Data
 
     public Data() throws SQLException {
         updateTeacherList();
-
-
+    }
+    private static Connection getConnection() throws SQLException { //database call
+        return DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/clubmanager",
+                "root",
+                ""
+        );
     }
 
-    /////////////////////////teachers///////////////////////////////
-
-
-    public static void updateTeacherList() throws SQLException { //updating teacher
-        Connection connection = getConnection();
-        String query = "SELECT * FROM `teachers`;";
-        try(PreparedStatement statement = connection.prepareStatement(query))
-        {
-            ResultSet results = statement.executeQuery();
-            while (results.next())
-            {
-                byte[] serializedObject = results.getBytes("teacher");
-                ByteArrayInputStream BInput = new ByteArrayInputStream(serializedObject);
-                ObjectInputStream OInput = new ObjectInputStream(BInput);
-                OInput.close();
-                Teacher read = (Teacher) OInput.readObject();
-                teacherList.add(read);
-            }
-
-        } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-
-    }
-    public static void addTeacher(Teacher addTeacher) // add new teacher into db
-    {
-        teacherList.add(addTeacher);
-        try {
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/clubmanager",
-                    "root",
-                    ""
-            );
-            String query5 ="INSERT INTO `teachers` (teacher) VALUES(?);";
-            try(PreparedStatement statement = connection.prepareStatement(query5))
-            {
-                ByteArrayOutputStream BOut = new ByteArrayOutputStream();
-                ObjectOutputStream ObjOut = new ObjectOutputStream(BOut);
-                ObjOut.writeObject(addTeacher);
-                ObjOut.close();
-                byte[] serializedObject = BOut.toByteArray();
-                statement.setBytes(1,serializedObject);
-                statement.executeUpdate();
-
-            }
-            catch (IOException e)
-            {
-                throw new RuntimeException(e);
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-
-    }
     /////////////////////////////Student//////////////////////////////////
-
     public static void addStudent(Student addStudent) throws SQLException {  //adding student
         studentList.add(addStudent);
         Connection connection = getConnection();
@@ -159,25 +106,23 @@ public class Data
     {
         return studentList;
     }
-    ///////////////////////Admin///////////////////////////////////
-    public static ObservableList<Admin> getAdminList()
-    {
-        return adminList;
-    }
-    public static void updateAdminList() throws SQLException { //updating student list
+
+    /////////////////////////teachers///////////////////////////////
+
+    public static void updateTeacherList() throws SQLException { //updating teacher
         Connection connection = getConnection();
-        String query = "SELECT * FROM `admins`;";
+        String query = "SELECT * FROM `teachers`;";
         try(PreparedStatement statement = connection.prepareStatement(query))
         {
             ResultSet results = statement.executeQuery();
             while (results.next())
             {
-                byte[] serializedObject = results.getBytes("admin");
+                byte[] serializedObject = results.getBytes("teacher");
                 ByteArrayInputStream BInput = new ByteArrayInputStream(serializedObject);
                 ObjectInputStream OInput = new ObjectInputStream(BInput);
                 OInput.close();
-                Admin read = (Admin) OInput.readObject();
-                adminList.add(read);
+                Teacher read = (Teacher) OInput.readObject();
+                teacherList.add(read);
             }
 
         } catch (IOException | ClassNotFoundException e) {
@@ -186,6 +131,40 @@ public class Data
 
 
     }
+    public static void addTeacher(Teacher addTeacher) {// add new teacher into db
+
+        teacherList.add(addTeacher);
+        try {
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/clubmanager",
+                    "root",
+                    ""
+            );
+            String query5 ="INSERT INTO `teachers` (teacher) VALUES(?);";
+            try(PreparedStatement statement = connection.prepareStatement(query5))
+            {
+                ByteArrayOutputStream BOut = new ByteArrayOutputStream();
+                ObjectOutputStream ObjOut = new ObjectOutputStream(BOut);
+                ObjOut.writeObject(addTeacher);
+                ObjOut.close();
+                byte[] serializedObject = BOut.toByteArray();
+                statement.setBytes(1,serializedObject);
+                statement.executeUpdate();
+
+            }
+            catch (IOException e)
+            {
+                throw new RuntimeException(e);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+    ///////////////////////Admin///////////////////////////////////
     public static void addAdmin(Admin addAdmin) throws SQLException {  // add new admin
         adminList.add(addAdmin);
 
@@ -210,8 +189,7 @@ public class Data
 
 
     }
-    public static void updateAdmin(Admin updateAdmin)
-    {
+    public static void updateAdmin(Admin updateAdmin) {
         for (Admin admin:adminList)
         {
             if (admin.getId().equals(updateAdmin.getId()))
@@ -250,28 +228,34 @@ public class Data
 
 
     }
-    /////////////////////////////clubs////////////////////////////////
-    public static void updateClubList() throws SQLException {
+    public static ObservableList<Admin> getAdminList()
+    {
+        return adminList;
+    }
+    public static void updateAdminList() throws SQLException { //updating student list
         Connection connection = getConnection();
-        String query = "SELECT * FROM `clubs1`;";
+        String query = "SELECT * FROM `admins`;";
         try(PreparedStatement statement = connection.prepareStatement(query))
         {
             ResultSet results = statement.executeQuery();
             while (results.next())
             {
-                byte[] serializedObject = results.getBytes("club");
+                byte[] serializedObject = results.getBytes("admin");
                 ByteArrayInputStream BInput = new ByteArrayInputStream(serializedObject);
                 ObjectInputStream OInput = new ObjectInputStream(BInput);
                 OInput.close();
-                club read = (club) OInput.readObject();
-                clubList.add(read);
+                Admin read = (Admin) OInput.readObject();
+                adminList.add(read);
             }
 
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
+
     }
+
+    /////////////////////////////clubs////////////////////////////////
     public static void addClub(club addclub) throws SQLException { // adding new clubs
         clubList.add(addclub);
         Connection connection = getConnection();
@@ -321,11 +305,61 @@ public class Data
         }
 
     }
+    public static void updateClub(club updateClub) throws SQLException {
+
+        for (club Club:clubList)
+        {
+            if (Club.getClubId().equals(updateClub.getClubId()))
+            {
+                clubList.set(clubList.indexOf(Club),updateClub);
+            }
+        }
+        Connection connection = getConnection();
+        int id = Integer.parseInt(updateClub.getClubId().substring(1));
+
+        String updateTeacher = "UPDATE clubs1 SET club=? WHERE club_id="+String.valueOf(id)+";";
+        try(PreparedStatement statement = connection.prepareStatement(updateTeacher))
+        {
+            ByteArrayOutputStream BOut = new ByteArrayOutputStream();
+            ObjectOutputStream ObjOut = new ObjectOutputStream(BOut);
+            ObjOut.writeObject(updateClub);
+            ObjOut.close();
+            byte[] serializedObject = BOut.toByteArray();
+
+            statement.setBytes(1,serializedObject);
+            statement.executeUpdate();
+
+        }
+        catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void updateClubList() throws SQLException {
+        Connection connection = getConnection();
+        String query = "SELECT * FROM `clubs1`;";
+        try(PreparedStatement statement = connection.prepareStatement(query))
+        {
+            ResultSet results = statement.executeQuery();
+            while (results.next())
+            {
+                byte[] serializedObject = results.getBytes("club");
+                ByteArrayInputStream BInput = new ByteArrayInputStream(serializedObject);
+                ObjectInputStream OInput = new ObjectInputStream(BInput);
+                OInput.close();
+                club read = (club) OInput.readObject();
+                clubList.add(read);
+            }
+
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
     public static ObservableList<club> getClubList()
     {
         return clubList;
     }
-
     public static String getNextId(String table) throws SQLException {  //getting the next auto increment id from table
 
         Connection connection = getConnection();
@@ -351,16 +385,7 @@ public class Data
         return id;
     }
 
-
-    private static Connection getConnection() throws SQLException { //database call
-        return DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/clubmanager",
-                "root",
-                ""
-        );
-    }
-    public static String getUserId()
-    {
+    public static String getUserId() {
         BufferedReader reader = null;
         String line="";
         String[] row = new String[0];
@@ -376,8 +401,7 @@ public class Data
 
         return row[0];
     }
-    public static void clearCSV()
-    {
+    public static void clearCSV() {
         try {
             FileWriter csvfile = new FileWriter("src/id.csv");
             PrintWriter write = new PrintWriter(csvfile);
@@ -388,8 +412,7 @@ public class Data
         }
         catch (IOException e){}
     }
-    public static int getmeetingID()
-    {
+    public static int getmeetingID() {
         BufferedReader reader = null;
         String line="";
         String[] row = new String[0];
@@ -404,8 +427,7 @@ public class Data
 
         return Integer.parseInt(row[0]);
     }
-    public static void incrementMeetingID()
-    {
+    public static void incrementMeetingID() {
         int newId = getmeetingID()+1;
         try {
             FileWriter csvfile = new FileWriter("src/meetingId.csv");
@@ -508,9 +530,6 @@ public class Data
 
         }
     }
-
-
-
     public static ObservableList<day> getDayList()
     {
         return dayList;
@@ -524,36 +543,6 @@ public class Data
         return teacherList;
     }
 
-    public static void updateClub(club updateClub) throws SQLException {
-
-        for (club Club:clubList)
-        {
-            if (Club.getClubId().equals(updateClub.getClubId()))
-            {
-                clubList.set(clubList.indexOf(Club),updateClub);
-            }
-        }
-        Connection connection = getConnection();
-        int id = Integer.parseInt(updateClub.getClubId().substring(1));
-
-        String updateTeacher = "UPDATE clubs1 SET club=? WHERE club_id="+String.valueOf(id)+";";
-        try(PreparedStatement statement = connection.prepareStatement(updateTeacher))
-        {
-            ByteArrayOutputStream BOut = new ByteArrayOutputStream();
-            ObjectOutputStream ObjOut = new ObjectOutputStream(BOut);
-            ObjOut.writeObject(updateClub);
-            ObjOut.close();
-            byte[] serializedObject = BOut.toByteArray();
-
-            statement.setBytes(1,serializedObject);
-            statement.executeUpdate();
-
-        }
-        catch (IOException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
     public static void updateTEacher(Teacher updateTeacher) throws SQLException {
         for (Teacher teach:teacherList)
         {
@@ -588,8 +577,7 @@ public class Data
 
 
     }
-    public static void updateEvent(event updateEvent)
-    {
+    public static void updateEvent(event updateEvent) {
         for (day Day:dayList)
         {
             if (Day.getDay().equals(updateEvent.getDate()))
