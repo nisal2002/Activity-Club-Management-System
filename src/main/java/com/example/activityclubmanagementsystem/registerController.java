@@ -716,12 +716,12 @@ public class registerController implements Initializable {
         } catch (SQLException e) {
             warnings.SqlWarning();
         }
-        adminTxtFirstN.setTextFormatter(textFormatter);
-        adminTxtLastN.setTextFormatter(textFormatter);
-        teacherTxtFirstN.setTextFormatter(textFormatter);
-        teacherTxtLastN.setTextFormatter(textFormatter);
-        studentTxtFirstN.setTextFormatter(textFormatter);
-        studentTxtLastN.setTextFormatter(textFormatter);
+        adminTxtFirstN.setTextFormatter(new TextFormatter<>(filter));
+        adminTxtLastN.setTextFormatter(new TextFormatter<>(filter));
+        teacherTxtFirstN.setTextFormatter(new TextFormatter<>(filter));
+        teacherTxtLastN.setTextFormatter(new TextFormatter<>(filter));
+        studentTxtFirstN.setTextFormatter(new TextFormatter<>(filter));
+        studentTxtLastN.setTextFormatter(new TextFormatter<>(filter));
     }
     private void Test()
     {
@@ -1007,5 +1007,5 @@ public class registerController implements Initializable {
         }
         return null; // Reject the change
     };
-    TextFormatter<String> textFormatter = new TextFormatter<String>(filter);
+//    TextFormatter<String> textFormatter = new TextFormatter<String>(filter);
 }
