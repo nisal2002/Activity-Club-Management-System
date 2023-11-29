@@ -58,21 +58,21 @@ public class warnings
         String warning=null;
         if (nowDate.isAfter(Meeting.getDay()))
         {
-            warning="Event is over";
+            warning="Activity is over";
         }
         else if (nowDate.isBefore(Meeting.getDay()))
         {
-            warning = "Event is yet to be started";
+            warning = "Activity is yet to be started";
         }
         else
         {
             if (nowTime.isBefore(Meeting.getStart()))
             {
-                warning = "Event is yet to be started";
+                warning = "Activity is yet to be started";
             }
             else if (nowTime.isAfter(Meeting.getEnd()))
             {
-                warning="Event is over";
+                warning="Activity is over";
             }
         }
         Alert alert = new Alert(Alert.AlertType.WARNING,warning,ButtonType.OK);
@@ -141,6 +141,8 @@ public class warnings
             }
 
         }
+        Alert alert = new Alert(Alert.AlertType.WARNING,warning,ButtonType.OK);
+        alert.show();
     }
 
 }

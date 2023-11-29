@@ -36,8 +36,21 @@ public class Student extends person {
         return grade;
     }
 
-    public ArrayList<club> getClubs() {
-        return clubs;
+    public ArrayList<club> getClubs()
+    {
+        ArrayList<club> newClubs = new ArrayList<>();
+        for (club Club:clubs)
+        {
+            for (club C:Data.getClubList())
+            {
+                if(C.getClubId().equals(Club.getClubId()))
+                {
+                    newClubs.add(C);
+                    break;
+                }
+            }
+        }
+        return newClubs;
     }
     public void addClub(club Club)
     {
