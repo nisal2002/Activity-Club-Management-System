@@ -638,7 +638,8 @@ public class studentController implements Initializable {
             }
 
 
-            if (nowTime.isAfter(timeList.get(row * 2)) && nowTime.isBefore(timeList.get(row * 2 + 1)) && currentDay.getDay().equals(now)&&isAMember) {
+            if (nowTime.isAfter(timeList.get(row * 2)) && nowTime.isBefore(timeList.get(row * 2 + 1)) && currentDay.getDay().equals(now)&&isAMember)
+            {
                 FXMLLoader fxmlLoader = new FXMLLoader(teacherController.class.getResource("markAttendance.fxml"));
                 fxmlLoader.setControllerFactory(attendenceController -> new markAttendanceController(currentMeeting, currentStudent));
 
@@ -1507,7 +1508,11 @@ public class studentController implements Initializable {
         populateMeetings();
         populateJoinClub(Data.getClubList());
     }
-    public void onResetClick(ActionEvent event){}
+    public void onResetClick(ActionEvent event)
+    {
+        joinClbID.clear();
+        joinClbName.clear();
+    }
     public void onProfileSaveClick(ActionEvent event)
     {
         getText input = getProfileInputs();
