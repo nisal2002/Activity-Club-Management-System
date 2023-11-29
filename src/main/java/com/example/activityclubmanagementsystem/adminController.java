@@ -269,7 +269,9 @@ public class adminController implements Initializable {
             {
                 warnings.register("please Select a Teacher to Replace");
             }
+
         }
+        populateTeachersTable(1,"");
     }
     public void onTeacherLastNEnter(KeyEvent event)
     {

@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 abstract class person implements Serializable
 {
-    private String id;
+    private final String id;
     private String firstName;
     private String SurName;
     private String nic;
@@ -61,9 +61,9 @@ abstract class person implements Serializable
         return password;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    //public void setId(String id) {
+      //  this.id = id;
+    //}
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
