@@ -358,7 +358,7 @@
                   <Button fx:id="Atest" layoutX="437.0" layoutY="18.0" mnemonicParsing="false" onAction="#onStest" text="Test" />
                   <Button fx:id="studentBtnShow" layoutX="543.0" layoutY="390.0" mnemonicParsing="false" onMousePressed="#onStudentShowPress" onMouseReleased="#onStudentShowRelease" prefHeight="24.0" prefWidth="60.0" text="Show" />
                   <TextField fx:id="StudenttxtPwdShow" layoutX="87.0" layoutY="387.0" prefHeight="32.0" prefWidth="175.0" visible="false" />
-                  <TextField fx:id="StudenttxtRePwdShow" layoutX="368.0" layoutY="386.0" prefHeight="32.0" prefWidth="175.0" />
+                  <TextField fx:id="StudenttxtRePwdShow" layoutX="368.0" layoutY="386.0" prefHeight="32.0" prefWidth="175.0" visible="false" />
                </children>
             </Pane>
             </children>
