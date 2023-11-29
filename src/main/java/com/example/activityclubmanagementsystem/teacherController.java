@@ -2304,6 +2304,20 @@ public class teacherController implements Initializable {
                 profileTxtRePwd.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
             }
         }
+        if (profileTxtPwd.getLength() < 6 || profileTxtPwd.getLength() > 10)
+        {
+            completed=false;
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Password must be between 6-10 Characters");
+
+            alert.showAndWait(); // Display the alert and wait for user interaction
+        }
+        else
+        {
+            completed=true;
+        }
 
         ArrayList<String> inputString = new ArrayList<>();
         inputString.add(profTeachID.getText());
