@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.function.UnaryOperator;
 
 public class registerController implements Initializable {
     @FXML
@@ -715,7 +716,12 @@ public class registerController implements Initializable {
         } catch (SQLException e) {
             warnings.SqlWarning();
         }
-
+        adminTxtFirstN.setTextFormatter(textFormatter);
+        adminTxtLastN.setTextFormatter(textFormatter);
+        teacherTxtFirstN.setTextFormatter(textFormatter);
+        teacherTxtLastN.setTextFormatter(textFormatter);
+        studentTxtFirstN.setTextFormatter(textFormatter);
+        studentTxtLastN.setTextFormatter(textFormatter);
     }
     private void Test()
     {
@@ -994,4 +1000,12 @@ public class registerController implements Initializable {
         adminTxtPwd.setVisible(true);
         adminTxtRePwd.setVisible(true);
     }
+    UnaryOperator<TextFormatter.Change> filter = change -> {
+        String newText = change.getControlNewText();
+        if (newText.matches("[a-zA-Z]*")) {
+            return change; // Allow the change
+        }
+        return null; // Reject the change
+    };
+    TextFormatter<String> textFormatter = new TextFormatter<String>(filter);
 }
