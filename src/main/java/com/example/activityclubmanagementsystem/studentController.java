@@ -781,9 +781,12 @@ public class studentController implements Initializable {
         });
         tblClb.getSelectionModel().selectedItemProperty().addListener((ObservableValue,club,Club)->
         {
-            joinClbID.setText(Club.getClubId());
-            joinClbName.setText(Club.getClubName());
-            joinClub=Club;
+            if (Club!=null)
+            {
+                joinClbID.setText(Club.getClubId());
+                joinClbName.setText(Club.getClubName());
+                joinClub = Club;
+            }
         });
         try {
             tblClb.setItems(clubs);
