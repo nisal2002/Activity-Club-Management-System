@@ -551,8 +551,9 @@ public class adminController implements Initializable {
 
             Gender = profileChoiceGender.getValue().toString();
         }
-
-        if (profileTxtEmail.getText().isEmpty())
+        String emailRegx="^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        if (profileTxtEmail.getText().isEmpty()||!profileTxtEmail.getText().matches(emailRegx))
         {
             profileTxtEmail.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
             completed=false;
