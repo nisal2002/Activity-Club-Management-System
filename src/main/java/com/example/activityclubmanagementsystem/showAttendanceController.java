@@ -2,6 +2,7 @@ package com.example.activityclubmanagementsystem;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,19 +62,23 @@ public class showAttendanceController implements Initializable
     private Label LblEndTime;
     @FXML
     private Label endTime;
+    private event currentEvent;
+    String type=null;
 
 
-    public showAttendanceController(meeting currentMeeting,boolean ifmeeting) {
+    public showAttendanceController(meeting currentMeeting,String type,event Event) {
 
         this.currentMeeting = currentMeeting;
-        this.ifMeeting=ifmeeting;
+        this.type=type;
+        this.currentEvent=Event;
+//        this.ifMeeting=ifmeeting;
     }
     public void onGenerateReport(ActionEvent event)
     {
         DirectoryChooser directory = new DirectoryChooser();
         directory.setInitialDirectory(new File("C:\\"));
         File selected = directory.showDialog(new Stage());
-        if (!ifMeeting) {
+        if (type.equals("1")) {
 
             int length1 = currentMeeting.getClub().getClubName().length() + 11;
             int length2 = currentMeeting.getClub().getInCharge().getFullName().length() + 19;
@@ -164,7 +169,7 @@ public class showAttendanceController implements Initializable
                 warnings.FileError();
             }
         }
-        else
+        else if(type.equals("2"))
         {
             try {
 
@@ -259,6 +264,100 @@ public class showAttendanceController implements Initializable
                 warnings.FileError();
             }
         }
+        else if (type.equals("3"))
+        {
+            try {
+
+                int length1 = currentEvent.getHeldByClub().getClubName().length() + 11;
+                int length2 = currentEvent.getHeldByClub().getInCharge().getFullName().length() + 19;
+                String string1 = null;
+                String string2 = null;
+                if (length1 > length2) {
+                    string1 = "Club Name: " + currentMeeting.getClub().getClubName() + "Club ID: " + currentMeeting.getClub().getClubId() + "\n";
+                    string2 = "Teacher-In-Charge: " + currentMeeting.getClub().getInCharge().getFullName() + " ".repeat(length1 - length2) +
+                            "Teacher ID: " + currentMeeting.getClub().getInCharge().getId() + "\n";
+                } else {
+                    string1 = "Club Name: " + currentMeeting.getClub().getClubName() + " ".repeat(length2 - length1) + "Club ID: " + currentMeeting.getClub().getClubId() + "\n";
+                    string2 = "Teacher-In-Charge: " + currentMeeting.getClub().getInCharge().getFullName() + " ".repeat(length2 - length1) +
+                            "Teacher ID: " + currentMeeting.getClub().getInCharge().getId() + "\n";
+                }
+                String string3 = "Venue:                   " + currentEvent.getVenue() + "\n";
+                String string4 = "Date:                    " + currentEvent.getDate().toString();
+                String string5 = "Start Time:              " + currentEvent.getStartTime().toString() + "\n";
+                String string6 = "End Time                 " + currentEvent.getEndTime().toString() + "\n";
+               // String string7 = "Total number of students:" + String.valueOf(currentMeeting.getTotalStudents()) + "\n";
+                String string8 = "Number Attended:         " + String.valueOf(currentEvent.getAttendance().size()) + "\n";
+                String divider = null;
+                if (string1.length() >= string2.length()) {
+                    divider = "-".repeat(string1.length()) + "\n";
+                } else {
+                    divider = "-".repeat(string2.length()) + "\n";
+                }
+                selected.toPath().toFile().createNewFile();
+                String fileName = "Event " + currentEvent.getHeldByClub().getClubName() + " " + currentEvent.getDate().toString() + ".txt";
+                File file = new File(selected, fileName);
+                file.createNewFile();
+                Path filePath = Paths.get(file.getPath());
+                Files.write(filePath, string1.getBytes(), StandardOpenOption.APPEND);
+                Files.write(filePath, string2.getBytes(), StandardOpenOption.APPEND);
+                Files.write(filePath, string3.getBytes(), StandardOpenOption.APPEND);
+                Files.write(filePath, string4.getBytes(), StandardOpenOption.APPEND);
+                Files.write(filePath, string5.getBytes(), StandardOpenOption.APPEND);
+                Files.write(filePath, string6.getBytes(), StandardOpenOption.APPEND);
+               // Files.write(filePath, string7.getBytes(), StandardOpenOption.APPEND);
+                Files.write(filePath, string8.getBytes(), StandardOpenOption.APPEND);
+                Files.write(filePath, divider.getBytes(), StandardOpenOption.APPEND);
+                Files.write(filePath, "  \n".getBytes(), StandardOpenOption.APPEND);
+                Files.write(filePath, "Attended Students\n".getBytes(), StandardOpenOption.APPEND);
+                String header1 = "|Student ID | Student Name                            | Grade | Email                     |" + "\n";
+                String header2 = "-------------------------------------------------------------------------------------------" + "\n";
+                Files.write(filePath, header2.getBytes(), StandardOpenOption.APPEND);
+                Files.write(filePath, header1.getBytes(), StandardOpenOption.APPEND);
+                Files.write(filePath, header2.getBytes(), StandardOpenOption.APPEND);
+
+                for (Student student : currentEvent.getStudents()) {
+                    String StudentString = "|" + student.getId() + getSpaces(11, student.getId()) + "| " + student.getFullName() + getSpaces(40, student.getFullName()) + "| " + student.getGrade() + getSpaces(6, String.valueOf(student.getGrade())) +
+                            "| " + student.getEmail() + getSpaces(26, student.getEmail()) + "|" + "\n";
+                    Files.write(filePath, StudentString.getBytes(), StandardOpenOption.APPEND);
+                    Files.write(filePath, header2.getBytes(), StandardOpenOption.APPEND);
+                }
+                Files.write(filePath, "  \n".getBytes(), StandardOpenOption.APPEND);
+                String didntAttend = " Absent Students" + "\n";
+                Files.write(filePath, didntAttend.getBytes(), StandardOpenOption.APPEND);
+
+                Files.write(filePath, header2.getBytes(), StandardOpenOption.APPEND);
+                Files.write(filePath, header1.getBytes(), StandardOpenOption.APPEND);
+                Files.write(filePath, header2.getBytes(), StandardOpenOption.APPEND);
+                club current = null;
+                for (club Club : Data.getClubList()) {
+                    if (Club.getClubId().equals(currentMeeting.getClub().getClubId())) {
+                        current = Club;
+                        break;
+                    }
+                }
+                ArrayList<Student> absent = new ArrayList<>();
+                for (Student student : current.getMembers()) {
+                    if (!currentMeeting.getAttendence().contains(student.getId())) {
+                        absent.add(student);
+                    }
+                }
+                for (Student student : absent) {
+                    String StudentString = "|" + student.getId() + getSpaces(11, student.getId()) + "| " + student.getFullName() + getSpaces(40, student.getFullName()) + "| " + student.getGrade() + getSpaces(6, String.valueOf(student.getGrade())) +
+                            "| " + student.getEmail() + getSpaces(26, student.getEmail()) + "|" + "\n";
+                    Files.write(filePath, StudentString.getBytes(), StandardOpenOption.APPEND);
+                    Files.write(filePath, header2.getBytes(), StandardOpenOption.APPEND);
+                }
+                Files.write(filePath, "  \n".getBytes(), StandardOpenOption.APPEND);
+                Files.write(filePath, "  \n".getBytes(), StandardOpenOption.APPEND);
+                String generated = "Generated on: " + LocalDate.now().toString() + " At: " + LocalTime.now();
+                Files.write(filePath, generated.getBytes(), StandardOpenOption.APPEND);
+
+            }
+            catch (IOException e)
+            {
+                warnings.FileError();
+            }
+        }
 
 
 
@@ -275,16 +374,19 @@ public class showAttendanceController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        attendanceLblClub.setText(currentMeeting.getClubName());
-        attendanceLblDate.setText(currentMeeting.getDay().toString());
-        if (ifMeeting)
-        {
+
+        if (type.equals("1"))
+        { attendanceLblClub.setText(currentMeeting.getClubName());
+            attendanceLblDate.setText(currentMeeting.getDay().toString());
             attendanceLblSlot.setText(String.valueOf(currentMeeting.getTimeSlot()));
             attendanceLblNumber.setText(String.valueOf(currentMeeting.getAttendence().size()));
 
         }
-        else
+        else if (type.equals("2"))
         {
+            attendanceLblClub.setText(currentMeeting.getClubName());
+            attendanceLblDate.setText(currentMeeting.getDay().toString());
+
             lblTimeSlot.setText("Start Time");
             attendanceLblSlot.setText(currentMeeting.getStart().toString());
             lblTotal.setLayoutY(165);
@@ -293,13 +395,45 @@ public class showAttendanceController implements Initializable
             LblEndTime.setLayoutX(36);
             LblEndTime.setLayoutY(130);
             LblEndTime.setVisible(true);
-            endTime.setLayoutX(36);
+            endTime.setLayoutX(225);
             endTime.setLayoutY(130);
             endTime.setText(currentMeeting.getEnd().toString());
+            endTime.setVisible(true);
             studentTable.setLayoutY(200);
 
         }
-        populateStudent(currentMeeting.getStudentList());
+        else if (type.equals("3"))
+        {
+            attendanceLblClub.setText(currentEvent.getHeldByClub().getClubName());
+            attendanceLblDate.setText(currentEvent.getDate().toString());
+            attendanceLblSlot.setText(currentEvent.getVenue());
+            lblTimeSlot.setText("Start Time");
+            attendanceLblSlot.setText(currentEvent.getStartTime().toString());
+            lblTotal.setLayoutY(165);
+            attendanceLblNumber.setLayoutY(165);
+            attendanceLblNumber.setText(String.valueOf(currentEvent.getAttendance().size()));
+            LblEndTime.setLayoutX(36);
+            LblEndTime.setLayoutY(130);
+            LblEndTime.setVisible(true);
+            endTime.setLayoutX(225);
+            endTime.setLayoutY(130);
+            endTime.setText(currentEvent.getEndTime().toString());
+            endTime.setVisible(true);
+            studentTable.setLayoutY(200);
+
+        }
+        if (type.equals("1")||type.equals("2")) {
+            populateStudent(currentMeeting.getStudentList());
+        }
+        else
+        {
+            ObservableList<Student> students = FXCollections.observableArrayList();
+            for (Student s:currentEvent.getStudents())
+            {
+                students.add(s);
+            }
+            populateStudent(students);
+        }
 
 
 

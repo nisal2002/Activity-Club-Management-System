@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 //Sevindu
-public class timeSlot implements Serializable
+public class timeSlot implements Serializable // event shedule create time
 {
     private meeting venue1;
     private meeting venue2;

@@ -59,15 +59,8 @@ public class attendanceEventController implements Initializable
     @FXML
     private Label lblDate;
     event CurrentEvent;
-
-    public attendanceEventController(event currentEvent)
-    {
-        CurrentEvent = currentEvent;
-    }
-
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)
-    {
+    public void initialize(URL url, ResourceBundle resourceBundle)  { //tables populate
 
         lblEventName.setText(CurrentEvent.getEventName());
         lblHeldBy.setText(CurrentEvent.getHeldByClub().getClubName());
@@ -113,11 +106,14 @@ public class attendanceEventController implements Initializable
 
 
     }
-
-    public void onReportClick(ActionEvent event)
+    public attendanceEventController(event currentEvent)
     {
+        CurrentEvent = currentEvent;
+    }
+    public void onReportClick(ActionEvent event)  {//generating report
+
         DirectoryChooser directory = new DirectoryChooser();
-        directory.setInitialDirectory(new File("C:\\"));
+        directory.setInitialDirectory(new File("C:\\")); //starting the path name. if errors comment this line
         File selected = directory.showDialog(new Stage());
         try {
 
@@ -214,8 +210,7 @@ public class attendanceEventController implements Initializable
             warnings.FileError();
         }
     }
-    private String getSpaces(int max,String string)
-    {
+    private String getSpaces(int max,String string) {
         int difference= max-string.length();
         return " ".repeat(difference);
     }

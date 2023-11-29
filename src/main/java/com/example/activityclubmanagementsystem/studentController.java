@@ -32,6 +32,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.function.UnaryOperator;
 
 public class studentController implements Initializable {
     @FXML
@@ -260,7 +261,7 @@ public class studentController implements Initializable {
         addStage.show();
     }
     @FXML
-    public void selectClick(ActionEvent actionEvent) {
+    public void selectClick(ActionEvent actionEvent) {  //select pane for function
         if (actionEvent.getSource() == joinClbBtn) {
             joinClbPane.toFront();
         }
@@ -638,7 +639,8 @@ public class studentController implements Initializable {
             }
 
 
-            if (nowTime.isAfter(timeList.get(row * 2)) && nowTime.isBefore(timeList.get(row * 2 + 1)) && currentDay.getDay().equals(now)&&isAMember) {
+            if (nowTime.isAfter(timeList.get(row * 2)) && nowTime.isBefore(timeList.get(row * 2 + 1)) && currentDay.getDay().equals(now)&&isAMember)
+            {
                 FXMLLoader fxmlLoader = new FXMLLoader(teacherController.class.getResource("markAttendance.fxml"));
                 fxmlLoader.setControllerFactory(attendenceController -> new markAttendanceController(currentMeeting, currentStudent));
 
@@ -702,7 +704,7 @@ public class studentController implements Initializable {
 
 
     }
-    private void populateJoinClub(ObservableList<club> clubList)
+    private void populateJoinClub(ObservableList<club> clubList) //joining club
     {
         ObservableList<String> clubId = FXCollections.observableArrayList();
         ObservableList<club> clubs= FXCollections.observableArrayList();
@@ -781,9 +783,12 @@ public class studentController implements Initializable {
         });
         tblClb.getSelectionModel().selectedItemProperty().addListener((ObservableValue,club,Club)->
         {
-            joinClbID.setText(Club.getClubId());
-            joinClbName.setText(Club.getClubName());
-            joinClub=Club;
+            if (Club!=null)
+            {
+                joinClbID.setText(Club.getClubId());
+                joinClbName.setText(Club.getClubName());
+                joinClub = Club;
+            }
         });
         try {
             tblClb.setItems(clubs);
@@ -844,6 +849,8 @@ public class studentController implements Initializable {
         profileDateDob.setValue(LocalDate.parse(currentStudent.getDob()));
         profileChoiceGender.setValue(currentStudent.getGender());
         profileTxtEmail.setText(currentStudent.getEmail());
+        profileTxtFirstN.setTextFormatter(new TextFormatter<>(filter));
+        profileTxtLastN.setTextFormatter(new TextFormatter<>(filter));
 //        for (club C:currentStudent.getClubs())
 //        {
 //            System.out.println(C.toString());
@@ -1504,7 +1511,11 @@ public class studentController implements Initializable {
         populateMeetings();
         populateJoinClub(Data.getClubList());
     }
-    public void onResetClick(ActionEvent event){}
+    public void onResetClick(ActionEvent event)
+    {
+        joinClbID.clear();
+        joinClbName.clear();
+    }
     public void onProfileSaveClick(ActionEvent event)
     {
         getText input = getProfileInputs();
@@ -1614,8 +1625,9 @@ public class studentController implements Initializable {
 
             Gender = profileChoiceGender.getValue().toString();
         }
-
-        if (profileTxtEmail.getText().isEmpty())
+        String emailRegx="^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        if (profileTxtEmail.getText().isEmpty()||!profileTxtEmail.getText().matches(emailRegx))
         {
             profileTxtEmail.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
             completed=false;
@@ -1642,6 +1654,20 @@ public class studentController implements Initializable {
                 profileTxtRePwd.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
             }
         }
+        if (profileTxtPwd.getLength() < 6 || profileTxtPwd.getLength() > 10)
+        {
+            completed=false;
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Alert");
+            alert.setHeaderText(null);
+            alert.setContentText("Password must be between 6-10 Characters");
+
+            alert.showAndWait(); // Display the alert and wait for user interaction
+        }
+        else
+        {
+            completed=true;
+        }
         ArrayList<String> inputs = new ArrayList<>();
         inputs.add(profileTxtID.getText());
         inputs.add(FirstN);
@@ -1656,7 +1682,7 @@ public class studentController implements Initializable {
 
     }
 
-    public void onMousePressed(MouseEvent mouseEvent)
+    public void onMousePressed(MouseEvent mouseEvent) //click password
     {
         seePwd.setText(profileTxtPwd.getText());
         seeRePwd.setText(profileTxtRePwd.getText());
@@ -1666,7 +1692,7 @@ public class studentController implements Initializable {
         profileTxtRePwd.setVisible(false);
     }
 
-    public void onMouseReleased(MouseEvent mouseEvent)
+    public void onMouseReleased(MouseEvent mouseEvent)  //release mouse to unshow password
     {
         seeRePwd.setVisible(false);
         seePwd.setVisible(false);
@@ -1728,4 +1754,11 @@ public class studentController implements Initializable {
         tableViewClb.setItems(clubs);
 
     }
+    UnaryOperator<TextFormatter.Change> filter = change -> {
+        String newText = change.getControlNewText();
+        if (newText.matches("[a-zA-Z]*")) {
+            return change; // Allow the change
+        }
+        return null; // Reject the change
+    };
 }

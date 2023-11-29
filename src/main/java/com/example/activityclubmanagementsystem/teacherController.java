@@ -29,6 +29,7 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.UnaryOperator;
 
 //import static javafx.scene.control.cell.CellUtils.updateItem;
 
@@ -267,6 +268,7 @@ public class teacherController implements Initializable {
     event attendanceEvent;
     Student seletedForBoard;
     @FXML
+    private MenuItem remove;
     private meeting removeMeeting;
     private ObservableValue<meeting> removeActivity;
 
@@ -406,7 +408,8 @@ public class teacherController implements Initializable {
         populateSchedule();
         populateClubMembers(null,false);
         populateAttendanceMeeting();
-
+        profFname.setTextFormatter(new TextFormatter<>(filter));
+        profSname.setTextFormatter(new TextFormatter<>(filter));
 
 
 
@@ -511,7 +514,7 @@ public class teacherController implements Initializable {
 
                     FXMLLoader fxmlLoader = new FXMLLoader(teacherController.class.getResource("showAttendance.fxml"));
                     meeting Meeting = attendanceCheck;
-                    fxmlLoader.setControllerFactory(showAttendance -> new showAttendanceController(Meeting,true));
+                    fxmlLoader.setControllerFactory(showAttendance -> new showAttendanceController(Meeting,"1",null));
                     Parent parent = fxmlLoader.load();
                     Scene scene = new Scene(parent, 620, 470);
                     Stage stage = new Stage();
@@ -671,7 +674,20 @@ public class teacherController implements Initializable {
             }
             if (clicks.get()==2)
             {
-                System.out.println("11");
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(teacherController.class.getResource("showAttendance.fxml"));
+                    com.example.activityclubmanagementsystem.meeting m=currentMeeting.getValue();
+                    fxmlLoader.setControllerFactory(showAttendance -> new showAttendanceController(m,"2",null));
+                    Parent parent = fxmlLoader.load();
+                    Scene scene = new Scene(parent, 620, 470);
+                    Stage stage = new Stage();
+                    stage.setScene(scene);
+                    stage.showAndWait();
+                }
+                catch (IOException e)
+                {
+
+                }
                 clicks.set(0);
             }
         });
@@ -1119,7 +1135,7 @@ public class teacherController implements Initializable {
 
     }
 
-    private void scheduleMeeting(int row,int coloumn,String coloumnid) throws IOException {
+    private void scheduleMeeting(int row,int coloumn,String coloumnid) throws IOException { //row = which period colmn id, colmn id = which colmn
         LocalDate selected =getSelectedDate(coloumnid);
         club meetingClub=null;
         String venue;
@@ -2032,7 +2048,7 @@ public class teacherController implements Initializable {
                     meeting M = new meeting(id,date,teacher.getInCharge(),venue,beginIndex);
                     M.setTotalSlots(endIndex-beginIndex);
                     M.setStart(start);
-                    M.setEnd(start);
+                    M.setEnd(end);
                     M.code=colorHexList.get(nextIndex());
                     currentDay.getSlots().get(beginIndex).setVenue1(M);
                     for (int i=beginIndex;i<endIndex;i++)
@@ -2055,7 +2071,7 @@ public class teacherController implements Initializable {
 //                        }
                     meeting M = new meeting(id,date,teacher.getInCharge(),venue,beginIndex);
                     M.setStart(start);
-                    M.setEnd(start);
+                    M.setEnd(end);
                     M.setTotalSlots(endIndex-beginIndex);
                     M.code=colorHexList.get(nextIndex());
                     currentDay.getSlots().get(beginIndex).setVenue2(M);
@@ -2081,7 +2097,7 @@ public class teacherController implements Initializable {
                     meeting M = new meeting(id,date,teacher.getInCharge(),venue,beginIndex);
                     M.setTotalSlots(endIndex-beginIndex);
                     M.setStart(start);
-                    M.setEnd(start);
+                    M.setEnd(end);
                     M.code=colorHexList.get(nextIndex());
                     currentDay.getSlots().get(beginIndex).setVenue3(M);
                     for (int i=beginIndex;i<endIndex;i++)
@@ -2263,7 +2279,9 @@ public class teacherController implements Initializable {
             profGender.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
             gender = profGender.getValue().toString();
         }
-        if(profEmail.getText().isEmpty()) {
+        String emailRegx="^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        if(profEmail.getText().isEmpty()||!profEmail.getText().matches(emailRegx)) {
             completed=false;
             profEmail.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
         } else {
@@ -2285,6 +2303,20 @@ public class teacherController implements Initializable {
                 profileTxtPwd.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
                 profileTxtRePwd.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
             }
+        }
+        if (profileTxtPwd.getLength() < 6 || profileTxtPwd.getLength() > 10)
+        {
+            completed=false;
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Alert");
+            alert.setHeaderText(null);
+            alert.setContentText("Password must be between 6-10 Characters");
+
+            alert.showAndWait(); // Display the alert and wait for user interaction
+        }
+        else
+        {
+            completed=true;
         }
 
         ArrayList<String> inputString = new ArrayList<>();
@@ -2578,21 +2610,45 @@ public class teacherController implements Initializable {
                 return new ReadOnlyObjectWrapper<>(eventStringCellDataFeatures.getValue().getDescription());
             }
         });
+        attendanceTblEvents.getSelectionModel().selectedItemProperty().addListener((ObservableValue,event,event1)->
+        {
+            attendanceEvent = event1;
+        });
         attendanceTblEvents.setOnMouseClicked((MouseEvent event)->
         {
             if (event.getClickCount()==2)
             {
-                click.set(2);
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(teacherController.class.getResource("showAttendance.fxml"));
+                    fxmlLoader.setControllerFactory(showAttendance -> new showAttendanceController(null,"3",attendanceEvent));
+                    Parent parent = fxmlLoader.load();
+                    Scene scene = new Scene(parent, 620, 470);
+                    Stage stage = new Stage();
+                    stage.setScene(scene);
+                    stage.showAndWait();
+                }
+                catch (IOException e)
+                {
+
+                }
             }
+
         });
-        attendanceTblEvents.getSelectionModel().selectedItemProperty().addListener((ObservableValue,event,Event)->
-        {
-            if (click.get()==2)
-            {
-                attendanceEvent = Event;
-            }
-            click.set(0);
-        });
+//        attendanceTblEvents.setOnMouseClicked((MouseEvent event)->
+//        {
+//            if (event.getClickCount()==2)
+//            {
+//                click.set(2);
+//            }
+//        });
+//        attendanceTblEvents.getSelectionModel().selectedItemProperty().addListener((ObservableValue,event,Event)->
+//        {
+//            if (click.get()==2)
+//            {
+//                attendanceEvent = Event;
+//            }
+//            click.set(0);
+//        });
         attendanceTblEvents.setItems(events);
     }
 
@@ -2890,6 +2946,14 @@ public class teacherController implements Initializable {
                         } else {
                             Day.getSlots().get(removeMeeting.getTimeSlot()).setVenue2(null);
                         }
+                        try {
+                            Data.updateDay(Day);
+                        }
+                        catch (SQLException e)
+                        {
+                            warnings.SqlWarning();
+                        }
+
                     }
                 }
                 populateSchedule();
@@ -2905,5 +2969,12 @@ public class teacherController implements Initializable {
 //
 //        }
     }
+    UnaryOperator<TextFormatter.Change> filter = change -> {
+        String newText = change.getControlNewText();
+        if (newText.matches("[a-zA-Z]*")) {
+            return change; // Allow the change
+        }
+        return null; // Reject the change
+    };
 }
 

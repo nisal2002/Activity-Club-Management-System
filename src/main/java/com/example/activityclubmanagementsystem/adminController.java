@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.function.UnaryOperator;
 
 public class adminController implements Initializable {
     @FXML
@@ -116,14 +117,10 @@ public class adminController implements Initializable {
     private Admin currentAdmin=null;
     private club toRemoveTeacher;
     private boolean isRemoving=false;
-
     ObservableList<Teacher> teacherList = FXCollections.observableArrayList(Data.getTeacherList());
-
-
     private String adminID;
 
-    public adminController()
-    {
+    public adminController() {
         adminID =Data.getUserId();
         for (Admin admin :Data.getAdminList())
         {
@@ -136,7 +133,7 @@ public class adminController implements Initializable {
     }
 
     @FXML
-    public void onBackClick(ActionEvent event) throws IOException {
+    public void onBackClick(ActionEvent event) throws IOException { //go to prv pane
         Parent currentPage= FXMLLoader.load(getClass().getResource("login.fxml"));
         Scene currentpageScene = new Scene(currentPage);
         Stage addStage =(Stage)((Node)event.getSource()).getScene().getWindow();
@@ -144,7 +141,7 @@ public class adminController implements Initializable {
         addStage.show();
     }
     @FXML
-    public void selectClick(ActionEvent actionEvent) {
+    public void selectClick(ActionEvent actionEvent) { //select panes
         if (actionEvent.getSource() == createClbBtn) {
             createClbPane.toFront();
             createBtnCreate.setText("create");
@@ -165,37 +162,14 @@ public class adminController implements Initializable {
 
 
     }
-    public void onclear(ActionEvent event)
-    {
+    public void onclear(ActionEvent event) {
         createTxtName.clear();
         createTxtTeacherId.clear();
         createTxtTeacherFirstN.clear();
         createTxtTeacherLastN.clear();
         createTxtDesc.clear();
     }
-    public void onTest(ActionEvent event)
-    {
-        ArrayList<String> clubNames = new ArrayList<>();
-        clubNames.add("Chess Club");
-        clubNames.add("Photography Society");
-        clubNames.add("Debate Team");
-        clubNames.add("Coding Club");
-        clubNames.add("Art Club");
-
-        // ArrayList for club descriptions
-        ArrayList<String> clubDescriptions = new ArrayList<>();
-        clubDescriptions.add("The Chess Club promotes strategic thinking and friendly competition.");
-        clubDescriptions.add("The Photography Society focuses on capturing moments and honing photography skills.");
-        clubDescriptions.add("The Debate Team encourages critical thinking and effective argumentation.");
-        clubDescriptions.add("The Coding Club explores programming concepts and collaborates on projects.");
-        clubDescriptions.add("The Art Club nurtures creativity and artistic expression through various mediums.");
-
-        Random rand = new Random();
-        int i = rand.nextInt(0,5);
-        createTxtName.setText(clubNames.get(i));
-        createTxtDesc.setText(clubDescriptions.get(i));
-    }
-    public void onClubCreate(ActionEvent event) throws SQLException {
+    public void onClubCreate(ActionEvent event) throws SQLException { //create club button click doing this
         if (!isRemoving)
         {
             getText input = getClubDetails();
@@ -240,7 +214,7 @@ public class adminController implements Initializable {
         {
             createTxtclubId.setText(toRemoveTeacher.getClubId());
             createTxtName.setText(toRemoveTeacher.getClubName());
-            createTxtTeacherId.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+            createTxtTeacherId.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;"); //red colors for when not filled fields
             createTxtTeacherFirstN.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
             createTxtTeacherLastN.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
             if (incharge!=null)
@@ -269,34 +243,31 @@ public class adminController implements Initializable {
             {
                 warnings.register("please Select a Teacher to Replace");
             }
-
         }
-        populateTeachersTable(1,"");
+        createClbPane.toFront();
+        //populateTeachersTable(1,"");
     }
-    public void onTeacherLastNEnter(KeyEvent event)
-    {
+    public void onTeacherLastNEnter(KeyEvent event) {
         createTblTeachers.getSelectionModel().select(null);
         String input = createTxtTeacherLastN.getText();
         populateTeachersTable(4,input);
 
     }
 
-    public void onTeacherFirstNEnter(KeyEvent event)
-    {
+    public void onTeacherFirstNEnter(KeyEvent event) {
         createTblTeachers.getSelectionModel().select(null);
         String input = createTxtTeacherFirstN.getText();
         populateTeachersTable(3,input);
     }
 
-    public void onIdEnter(KeyEvent event)
-    {
+    public void onIdEnter(KeyEvent event) {//select teacher id
+
         createTblTeachers.getSelectionModel().select(null);
         String input = createTxtTeacherId.getText();
         populateTeachersTable(2,input);
     }
 
-    private getText getClubDetails()
-    {
+    private getText getClubDetails() {
         Boolean completed = true;
         String ID=null;
         String clubName =null;
@@ -350,8 +321,8 @@ public class adminController implements Initializable {
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)
-    {
+    public void initialize(URL url, ResourceBundle resourceBundle){ // create tables in this method
+
         ;
         createTxtclubId.setDisable(true);
         try {
@@ -373,9 +344,11 @@ public class adminController implements Initializable {
         profileDateDob.setValue(LocalDate.parse(currentAdmin.getDob()));
         profileChoiceGender.setValue(currentAdmin.getGender());
         profileTxtEmail.setText(currentAdmin.getEmail());
+        profileTxtFrstN.setTextFormatter(new TextFormatter<>(filter));
+        profileTxtLastN.setTextFormatter(new TextFormatter<>(filter));
     }
-    private void populateTeachersTable(int field, String input)
-    {
+    private void populateTeachersTable(int field, String input) {// teachers table insert items
+
         /// field =1 all teachers| field =2 filtered by id | field =3 filtered by first name| field =4 filtered by last name
         ObservableList<Teacher> filteredList = FXCollections.observableArrayList();
         if(field==1)
@@ -418,20 +391,6 @@ public class adminController implements Initializable {
                 }
             }
         }
-//        for (Teacher teach:filteredList)
-//        {
-//            if (teach.getInCharge()!=null)
-//            {
-//                createTblTeachers.setRowFactory(teacherTableView ->
-//                {
-//                    TableRow<Teacher> row = new TableRow<>();
-//                    BooleanBinding hasClub = row.itemProperty().isEqualTo(teach).and(row.itemProperty().isNotNull());
-//                    row.styleProperty().bind(Bindings.when(hasClub).then("-fx-background-color: #d71313 ;"))
-//                            .otherWise("");
-//                    return row;
-//                });
-//            }
-//        }
         teachersId.setCellValueFactory(new PropertyValueFactory<>("id"));
         teachersFirstN.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         teachersLastN.setCellValueFactory(new PropertyValueFactory<>("SurName"));
@@ -480,8 +439,7 @@ public class adminController implements Initializable {
 
 
     }
-    private getText gerAdminProfileInputs()
-    {
+    private getText gerAdminProfileInputs() {
         Boolean completed = true;
         String FirstN=null;
         String LastN=null;
@@ -548,8 +506,9 @@ public class adminController implements Initializable {
 
             Gender = profileChoiceGender.getValue().toString();
         }
-
-        if (profileTxtEmail.getText().isEmpty())
+        String emailRegx="^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        if (profileTxtEmail.getText().isEmpty()||!profileTxtEmail.getText().matches(emailRegx))
         {
             profileTxtEmail.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
             completed=false;
@@ -576,6 +535,20 @@ public class adminController implements Initializable {
                 profileTxtRePwd.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
             }
         }
+        if (profileTxtPwd.getLength() < 6 || profileTxtPwd.getLength() > 10)
+        {
+            completed=false;
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Alert!");
+            alert.setHeaderText(null);
+            alert.setContentText("Password must be between 6-10 Characters");
+
+            alert.showAndWait(); // Display the alert and wait for user interaction
+        }
+        else
+        {
+            completed=true;
+        }
         ArrayList<String> inputs = new ArrayList<>();
         inputs.add(profileTxtId.getText());
         inputs.add(FirstN);
@@ -588,10 +561,7 @@ public class adminController implements Initializable {
         getText input = new getText(completed,inputs);
         return input;
     }
-
-
-    public void onSaveClick(ActionEvent event)
-    {
+    public void onSaveClick(ActionEvent event) {
         getText input = gerAdminProfileInputs();
         if (input.complete)
         {
@@ -615,26 +585,8 @@ public class adminController implements Initializable {
             }
         }
     }
+    public void onTeacherRemove(ActionEvent event) {//code for replace teacher from club
 
-    public void onMousePressed(MouseEvent mouseEvent)
-    {
-        seePwd.setText(profileTxtPwd.getText());
-        seeRePwd.setText(profileTxtRePwd.getText());
-        seeRePwd.setVisible(true);
-        seePwd.setVisible(true);
-        profileTxtPwd.setVisible(false);
-        profileTxtRePwd.setVisible(false);
-    }
-
-    public void onMouseReleased(MouseEvent mouseEvent)
-    {
-        seeRePwd.setVisible(false);
-        seePwd.setVisible(false);
-        profileTxtPwd.setVisible(true);
-        profileTxtRePwd.setVisible(true);
-    }
-    public void onTeacherRemove(ActionEvent event)
-    {
         if (toRemoveTeacher!=null)
         {
             createBtnCreate.setText("Replace Teacher");
@@ -643,8 +595,8 @@ public class adminController implements Initializable {
         }
         populateTeachersTable(1,"");
     }
-    private void populateViewClub()
-    {
+    private void populateViewClub() {//show clubs
+
         viewClubId.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<club, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<club, String> clubStringCellDataFeatures) {
@@ -695,5 +647,48 @@ public class adminController implements Initializable {
             toRemoveTeacher=Club;
         });
         tableViewClb.setItems(Data.getClubList());
+    }
+    UnaryOperator<TextFormatter.Change> filter = change -> {
+        String newText = change.getControlNewText();
+        if (newText.matches("[a-zA-Z]*")) {
+            return change; // Allow the change
+        }
+        return null; // Reject the change
+    };
+    public void onMousePressed(MouseEvent mouseEvent){  //clicking the mouse
+        seePwd.setText(profileTxtPwd.getText());
+        seeRePwd.setText(profileTxtRePwd.getText());
+        seeRePwd.setVisible(true);
+        seePwd.setVisible(true);
+        profileTxtPwd.setVisible(false);
+        profileTxtRePwd.setVisible(false);
+    }
+
+    public void onMouseReleased(MouseEvent mouseEvent) { //relase mouse
+        seeRePwd.setVisible(false);
+        seePwd.setVisible(false);
+        profileTxtPwd.setVisible(true);
+        profileTxtRePwd.setVisible(true);
+    }
+    public void onTest(ActionEvent event) { //test data to insert
+        ArrayList<String> clubNames = new ArrayList<>();
+        clubNames.add("Chess Club");
+        clubNames.add("Photography Society");
+        clubNames.add("Debate Team");
+        clubNames.add("Coding Club");
+        clubNames.add("Art Club");
+
+        // ArrayList for club descriptions
+        ArrayList<String> clubDescriptions = new ArrayList<>();
+        clubDescriptions.add("The Chess Club promotes strategic thinking and friendly competition.");
+        clubDescriptions.add("The Photography Society focuses on capturing moments and honing photography skills.");
+        clubDescriptions.add("The Debate Team encourages critical thinking and effective argumentation.");
+        clubDescriptions.add("The Coding Club explores programming concepts and collaborates on projects.");
+        clubDescriptions.add("The Art Club nurtures creativity and artistic expression through various mediums.");
+
+        Random rand = new Random();
+        int i = rand.nextInt(0,5);
+        createTxtName.setText(clubNames.get(i));
+        createTxtDesc.setText(clubDescriptions.get(i));
     }
 }

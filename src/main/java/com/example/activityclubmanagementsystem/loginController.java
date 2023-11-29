@@ -160,7 +160,7 @@ public class loginController  {
     }
 
     @FXML
-    public void onRegisterClick(ActionEvent event) throws IOException {
+    public void onRegisterClick(ActionEvent event) throws IOException {  //clik to register
         Parent currentPage= FXMLLoader.load(getClass().getResource("register.fxml"));
         Scene currentpageScene = new Scene(currentPage);
         Stage addStage =(Stage)((Node)event.getSource()).getScene().getWindow();
@@ -168,7 +168,7 @@ public class loginController  {
         addStage.show();
     }
 
-    public void onShowPwdpress(MouseEvent mouseEvent)
+    public void onShowPwdpress(MouseEvent mouseEvent)  //click btn to show pswd
     {
         txtShowPwd.setText(loginPassword.getText());
         loginPassword.setVisible(false);
@@ -176,7 +176,7 @@ public class loginController  {
 
     }
 
-    public void onShowPwdRelease(MouseEvent mouseEvent)
+    public void onShowPwdRelease(MouseEvent mouseEvent)  // release will unshow password
     {
         txtShowPwd.setText(" ");
         txtShowPwd.setVisible(false);
@@ -193,7 +193,7 @@ public class loginController  {
         }
     }
 
-    public void onPasswordKey(KeyEvent event) throws IOException {
+    public void onPasswordKey(KeyEvent event) throws IOException { //when clicking enter user can login
 
         if (event.getCode().equals( KeyCode.ENTER))
         {
