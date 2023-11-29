@@ -113,6 +113,8 @@ public class loginController  {
                 {
                     boolean isCorrect=false;
                     for (Admin A : Data.getAdminList()) {
+//                        System.out.println(A.getId());
+//                        System.out.println(A.getPassword());
                         if (A.getId().equals(id) && A.getPassword().equals(pwd)) {
                             isCorrect=true;
                             writeID(id);

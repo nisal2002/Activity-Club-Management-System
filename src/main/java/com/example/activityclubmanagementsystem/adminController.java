@@ -639,6 +639,7 @@ public class adminController implements Initializable {
             isRemoving=true;
             createClbPane.toFront();
         }
+//        populateTeachersTable(0,"");
     }
     private void populateViewClub()
     {

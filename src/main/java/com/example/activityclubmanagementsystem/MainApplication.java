@@ -28,7 +28,11 @@ public class MainApplication extends Application {
 //        {
 //            e.printStackTrace();
 //        }
-
+        Data.updateTeacherList();
+        Data.updateDayList();
+        Data.updateClubList();
+        Data.updateStudentList();
+        Data.updateAdminList();
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("OOD");
