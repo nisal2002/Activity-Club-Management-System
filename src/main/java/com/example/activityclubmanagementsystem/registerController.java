@@ -266,7 +266,9 @@ public class registerController implements Initializable {
             teacherDateDob.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
             dob = teacherDateDob.getValue().toString();
         }
-        if(teacherTxtEmail.getText().isEmpty())
+        String emailRegx="^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        if(teacherTxtEmail.getText().isEmpty() ||!teacherTxtEmail.getText().matches(emailRegx))
         {
             completed=false;
             teacherTxtEmail.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
@@ -441,7 +443,9 @@ public class registerController implements Initializable {
             studentDateDob.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
             dob = studentDateDob.getValue().toString();
         }
-        if(studentTxtEmail.getText().isEmpty())
+        String emailRegx="^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        if(studentTxtEmail.getText().isEmpty()||!studentTxtEmail.getText().matches(emailRegx))
         {
             completed=false;
             studentTxtEmail.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
@@ -614,7 +618,9 @@ public class registerController implements Initializable {
             adminDateDob.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
             dob = adminDateDob.getValue().toString();
         }
-        if(adminTxtEmail.getText().isEmpty())
+        String emailRegx="^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        if(adminTxtEmail.getText().isEmpty()||!adminTxtEmail.getText().matches(emailRegx))
         {
             completed=false;
             adminTxtEmail.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
@@ -623,6 +629,15 @@ public class registerController implements Initializable {
         {
             adminTxtEmail.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
             email = adminTxtEmail.getText();
+        }
+
+
+
+
+
+        if (admin.getText().matches(emailRegx))
+        {
+            completed=true;
         }
         if(adminChoiceGender.getValue()==null)
         {
@@ -722,6 +737,8 @@ public class registerController implements Initializable {
         teacherTxtLastN.setTextFormatter(new TextFormatter<>(filter));
         studentTxtFirstN.setTextFormatter(new TextFormatter<>(filter));
         studentTxtLastN.setTextFormatter(new TextFormatter<>(filter));
+
+
     }
     private void Test()
     {

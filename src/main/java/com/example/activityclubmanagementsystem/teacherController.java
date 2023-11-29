@@ -2279,7 +2279,9 @@ public class teacherController implements Initializable {
             profGender.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
             gender = profGender.getValue().toString();
         }
-        if(profEmail.getText().isEmpty()) {
+        String emailRegx="^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+        if(profEmail.getText().isEmpty()||!profEmail.getText().matches(emailRegx)) {
             completed=false;
             profEmail.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
         } else {
