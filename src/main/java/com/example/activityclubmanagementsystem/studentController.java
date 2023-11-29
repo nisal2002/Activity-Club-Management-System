@@ -1658,7 +1658,7 @@ public class studentController implements Initializable {
         {
             completed=false;
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
+            alert.setTitle("Alert");
             alert.setHeaderText(null);
             alert.setContentText("Password must be between 6-10 Characters");
 
