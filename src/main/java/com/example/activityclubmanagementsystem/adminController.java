@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.function.UnaryOperator;
 
 public class adminController implements Initializable {
     @FXML
@@ -373,6 +374,8 @@ public class adminController implements Initializable {
         profileDateDob.setValue(LocalDate.parse(currentAdmin.getDob()));
         profileChoiceGender.setValue(currentAdmin.getGender());
         profileTxtEmail.setText(currentAdmin.getEmail());
+        profileTxtFrstN.setTextFormatter(new TextFormatter<>(filter));
+        profileTxtLastN.setTextFormatter(new TextFormatter<>(filter));
     }
     private void populateTeachersTable(int field, String input)
     {
@@ -696,4 +699,11 @@ public class adminController implements Initializable {
         });
         tableViewClb.setItems(Data.getClubList());
     }
+    UnaryOperator<TextFormatter.Change> filter = change -> {
+        String newText = change.getControlNewText();
+        if (newText.matches("[a-zA-Z]*")) {
+            return change; // Allow the change
+        }
+        return null; // Reject the change
+    };
 }

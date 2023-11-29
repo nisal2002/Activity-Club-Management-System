@@ -29,6 +29,7 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.UnaryOperator;
 
 //import static javafx.scene.control.cell.CellUtils.updateItem;
 
@@ -407,7 +408,8 @@ public class teacherController implements Initializable {
         populateSchedule();
         populateClubMembers(null,false);
         populateAttendanceMeeting();
-
+        profFname.setTextFormatter(new TextFormatter<>(filter));
+        profSname.setTextFormatter(new TextFormatter<>(filter));
 
 
 
@@ -2951,5 +2953,12 @@ public class teacherController implements Initializable {
 //
 //        }
     }
+    UnaryOperator<TextFormatter.Change> filter = change -> {
+        String newText = change.getControlNewText();
+        if (newText.matches("[a-zA-Z]*")) {
+            return change; // Allow the change
+        }
+        return null; // Reject the change
+    };
 }
 
