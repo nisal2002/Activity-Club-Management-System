@@ -639,7 +639,7 @@ public class adminController implements Initializable {
             isRemoving=true;
             createClbPane.toFront();
         }
-//        populateTeachersTable(0,"");
+        populateTeachersTable(1,"");
     }
     private void populateViewClub()
     {
