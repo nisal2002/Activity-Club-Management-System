@@ -32,6 +32,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.function.UnaryOperator;
 
 public class studentController implements Initializable {
     @FXML
@@ -848,6 +849,8 @@ public class studentController implements Initializable {
         profileDateDob.setValue(LocalDate.parse(currentStudent.getDob()));
         profileChoiceGender.setValue(currentStudent.getGender());
         profileTxtEmail.setText(currentStudent.getEmail());
+        profileTxtFirstN.setTextFormatter(new TextFormatter<>(filter));
+        profileTxtLastN.setTextFormatter(new TextFormatter<>(filter));
 //        for (club C:currentStudent.getClubs())
 //        {
 //            System.out.println(C.toString());
@@ -1736,4 +1739,11 @@ public class studentController implements Initializable {
         tableViewClb.setItems(clubs);
 
     }
+    UnaryOperator<TextFormatter.Change> filter = change -> {
+        String newText = change.getControlNewText();
+        if (newText.matches("[a-zA-Z]*")) {
+            return change; // Allow the change
+        }
+        return null; // Reject the change
+    };
 }
