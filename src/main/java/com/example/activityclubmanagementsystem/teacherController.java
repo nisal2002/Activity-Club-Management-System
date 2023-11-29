@@ -267,6 +267,7 @@ public class teacherController implements Initializable {
     event attendanceEvent;
     Student seletedForBoard;
     @FXML
+    private MenuItem remove;
     private meeting removeMeeting;
     private ObservableValue<meeting> removeActivity;
 
@@ -511,7 +512,7 @@ public class teacherController implements Initializable {
 
                     FXMLLoader fxmlLoader = new FXMLLoader(teacherController.class.getResource("showAttendance.fxml"));
                     meeting Meeting = attendanceCheck;
-                    fxmlLoader.setControllerFactory(showAttendance -> new showAttendanceController(Meeting,true));
+                    fxmlLoader.setControllerFactory(showAttendance -> new showAttendanceController(Meeting,"1",null));
                     Parent parent = fxmlLoader.load();
                     Scene scene = new Scene(parent, 620, 470);
                     Stage stage = new Stage();
@@ -671,7 +672,20 @@ public class teacherController implements Initializable {
             }
             if (clicks.get()==2)
             {
-                System.out.println("11");
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(teacherController.class.getResource("showAttendance.fxml"));
+                    com.example.activityclubmanagementsystem.meeting m=currentMeeting.getValue();
+                    fxmlLoader.setControllerFactory(showAttendance -> new showAttendanceController(m,"2",null));
+                    Parent parent = fxmlLoader.load();
+                    Scene scene = new Scene(parent, 620, 470);
+                    Stage stage = new Stage();
+                    stage.setScene(scene);
+                    stage.showAndWait();
+                }
+                catch (IOException e)
+                {
+
+                }
                 clicks.set(0);
             }
         });
@@ -2032,7 +2046,7 @@ public class teacherController implements Initializable {
                     meeting M = new meeting(id,date,teacher.getInCharge(),venue,beginIndex);
                     M.setTotalSlots(endIndex-beginIndex);
                     M.setStart(start);
-                    M.setEnd(start);
+                    M.setEnd(end);
                     M.code=colorHexList.get(nextIndex());
                     currentDay.getSlots().get(beginIndex).setVenue1(M);
                     for (int i=beginIndex;i<endIndex;i++)
@@ -2055,7 +2069,7 @@ public class teacherController implements Initializable {
 //                        }
                     meeting M = new meeting(id,date,teacher.getInCharge(),venue,beginIndex);
                     M.setStart(start);
-                    M.setEnd(start);
+                    M.setEnd(end);
                     M.setTotalSlots(endIndex-beginIndex);
                     M.code=colorHexList.get(nextIndex());
                     currentDay.getSlots().get(beginIndex).setVenue2(M);
@@ -2081,7 +2095,7 @@ public class teacherController implements Initializable {
                     meeting M = new meeting(id,date,teacher.getInCharge(),venue,beginIndex);
                     M.setTotalSlots(endIndex-beginIndex);
                     M.setStart(start);
-                    M.setEnd(start);
+                    M.setEnd(end);
                     M.code=colorHexList.get(nextIndex());
                     currentDay.getSlots().get(beginIndex).setVenue3(M);
                     for (int i=beginIndex;i<endIndex;i++)
@@ -2578,21 +2592,45 @@ public class teacherController implements Initializable {
                 return new ReadOnlyObjectWrapper<>(eventStringCellDataFeatures.getValue().getDescription());
             }
         });
+        attendanceTblEvents.getSelectionModel().selectedItemProperty().addListener((ObservableValue,event,event1)->
+        {
+            attendanceEvent = event1;
+        });
         attendanceTblEvents.setOnMouseClicked((MouseEvent event)->
         {
             if (event.getClickCount()==2)
             {
-                click.set(2);
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(teacherController.class.getResource("showAttendance.fxml"));
+                    fxmlLoader.setControllerFactory(showAttendance -> new showAttendanceController(null,"3",attendanceEvent));
+                    Parent parent = fxmlLoader.load();
+                    Scene scene = new Scene(parent, 620, 470);
+                    Stage stage = new Stage();
+                    stage.setScene(scene);
+                    stage.showAndWait();
+                }
+                catch (IOException e)
+                {
+
+                }
             }
+
         });
-        attendanceTblEvents.getSelectionModel().selectedItemProperty().addListener((ObservableValue,event,Event)->
-        {
-            if (click.get()==2)
-            {
-                attendanceEvent = Event;
-            }
-            click.set(0);
-        });
+//        attendanceTblEvents.setOnMouseClicked((MouseEvent event)->
+//        {
+//            if (event.getClickCount()==2)
+//            {
+//                click.set(2);
+//            }
+//        });
+//        attendanceTblEvents.getSelectionModel().selectedItemProperty().addListener((ObservableValue,event,Event)->
+//        {
+//            if (click.get()==2)
+//            {
+//                attendanceEvent = Event;
+//            }
+//            click.set(0);
+//        });
         attendanceTblEvents.setItems(events);
     }
 
@@ -2890,6 +2928,14 @@ public class teacherController implements Initializable {
                         } else {
                             Day.getSlots().get(removeMeeting.getTimeSlot()).setVenue2(null);
                         }
+                        try {
+                            Data.updateDay(Day);
+                        }
+                        catch (SQLException e)
+                        {
+                            warnings.SqlWarning();
+                        }
+
                     }
                 }
                 populateSchedule();
