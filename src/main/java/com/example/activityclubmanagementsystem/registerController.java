@@ -14,6 +14,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 import java.io.IOException;
 import java.net.URL;
@@ -308,6 +310,20 @@ public class registerController implements Initializable {
             teacherTxtPwd.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
 
         }
+        if (teacherTxtPwd.getLength() < 6 || teacherTxtPwd.getLength() > 10)
+        {
+            completed=false;
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Password must be between 6-10 Characters");
+
+            alert.showAndWait(); // Display the alert and wait for user interaction
+        }
+        else
+        {
+            completed=true;
+        }
         if(teacherTxtRePwd.getText().isEmpty())
         {
             completed=false;
@@ -475,6 +491,20 @@ public class registerController implements Initializable {
         {
             studentTxtPwd.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
 
+        }
+        if (studentTxtPwd.getLength() < 6 || studentTxtPwd.getLength() > 10)
+        {
+            completed=false;
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Password must be between 6-10 Characters");
+
+            alert.showAndWait(); // Display the alert and wait for user interaction
+        }
+        else
+        {
+            completed=true;
         }
         if(studentTxtRePwd.getText().isEmpty())
         {
@@ -678,6 +708,20 @@ public class registerController implements Initializable {
         {
             adminTxtRePwd.setStyle("-fx-border-color: white ; -fx-border-width: 2px ;");
 
+        }
+        if (adminTxtPwd.getLength() < 6 || adminTxtPwd.getLength() > 10)
+        {
+            completed=false;
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Password must be between 6-10 Characters");
+
+            alert.showAndWait(); // Display the alert and wait for user interaction
+        }
+        else
+        {
+            completed=true;
         }
         if(adminTxtPwd.getText().equals(adminTxtRePwd.getText()))
         {
