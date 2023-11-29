@@ -18,16 +18,16 @@ public class MainApplication extends Application {
 //        P1.start();
 //        ProcessBuilder P2 =new ProcessBuilder("D:\\Program Files for D\\XAMPP\\APACHE_start.bat");
 //        P2.start();
-        try {
-            ProcessBuilder P1 = new ProcessBuilder("D:\\Program Files for D\\XAMPP\\mysql_start.bat");
-            P1.start();
-            ProcessBuilder P2 = new ProcessBuilder("D:\\Program Files for D\\XAMPP\\APACHE_start.bat");
-            P2.start();
-        }
-        catch (ConnectException e)
-        {
-            e.printStackTrace();
-        }
+//        try {
+//            ProcessBuilder P1 = new ProcessBuilder("D:\\Program Files for D\\XAMPP\\mysql_start.bat");
+//            P1.start();
+//            ProcessBuilder P2 = new ProcessBuilder("D:\\Program Files for D\\XAMPP\\APACHE_start.bat");
+//            P2.start();
+//        }
+//        catch (ConnectException e)
+//        {
+//            e.printStackTrace();
+//        }
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());

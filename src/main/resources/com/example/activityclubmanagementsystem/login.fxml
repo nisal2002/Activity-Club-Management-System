@@ -38,16 +38,17 @@
                <font>
                   <Font size="15.0" />
                </font></Label>
-            <TextField fx:id="loginID" layoutX="34.0" layoutY="269.0" prefHeight="38.0" prefWidth="280.0" />
-            <Button fx:id="showBtn" layoutX="322.0" layoutY="352.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="49.0" text="Show" />
+            <TextField fx:id="loginID" layoutX="34.0" layoutY="269.0" onKeyPressed="#onLoginKey" prefHeight="38.0" prefWidth="280.0" />
+            <Button fx:id="showBtn" layoutX="322.0" layoutY="352.0" mnemonicParsing="false" onMousePressed="#onShowPwdpress" onMouseReleased="#onShowPwdRelease" prefHeight="34.0" prefWidth="49.0" text="Show" />
             <Button fx:id="loginBtn" layoutX="191.0" layoutY="440.0" mnemonicParsing="false" onAction="#onLoginClick" prefHeight="46.0" prefWidth="113.0" text="Login" />
             <Label fx:id="loginMsg" layoutX="33.0" layoutY="395.0" prefHeight="38.0" prefWidth="280.0" />
             <ImageView fitHeight="105.0" fitWidth="122.0" layoutX="153.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../img/login.png" />
                </image></ImageView>
-            <PasswordField fx:id="loginPassword" layoutX="33.0" layoutY="350.0" prefHeight="38.0" prefWidth="280.0" />
+            <PasswordField fx:id="loginPassword" layoutX="33.0" layoutY="350.0" onKeyPressed="#onPasswordKey" prefHeight="38.0" prefWidth="280.0" />
             <Button fx:id="registerBtn" layoutX="68.0" layoutY="440.0" mnemonicParsing="false" onAction="#onRegisterClick" prefHeight="46.0" prefWidth="113.0" text="Register" />
+            <TextField fx:id="txtShowPwd" layoutX="34.0" layoutY="350.0" prefHeight="38.0" prefWidth="280.0" visible="false" />
          </children>
       </Pane>
    </children>
